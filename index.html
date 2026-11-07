@@ -6,58 +6,89 @@
   <meta name="theme-color" content="#102b50">
   <meta name="description" content="KING ZIEL APP — pencarian dan pengelolaan database internal.">
   <title>KING ZIEL APP | Internal Data Hub</title>
+  
+  <!-- Script buat bersihin URL dari embel-embel ChatGPT/AI -->
+  <script>
+    if (window.location.search.includes('utm_source')) {
+      window.history.replaceState(null, '', window.location.pathname);
+    }
+  </script>
+
   <script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"></script>
   <style>
     :root{--navy:#102b50;--navy2:#1c4778;--blue:#2563eb;--blue-soft:#edf3ff;--bg:#f3f6fb;--surface:#fff;--text:#182338;--muted:#718096;--border:#e3e9f2;--green:#128455;--green-soft:#e9f8f0;--red:#d64545;--red-soft:#fff0f0;--amber:#a56a12;--amber-soft:#fff7e8;--shadow:0 10px 30px rgba(22,44,78,.06);--radius:16px}
-    *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,"Segoe UI",system-ui,-apple-system,sans-serif}button,input,select{font:inherit}button{cursor:pointer}button:disabled{opacity:.45;cursor:not-allowed}.topbar{background:linear-gradient(115deg,var(--navy),var(--navy2));color:#fff;padding:20px clamp(16px,4vw,52px);box-shadow:0 4px 18px rgba(16,43,80,.16)}.topbar-inner{max-width:1700px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{display:flex;align-items:center;gap:13px}.brand-mark{width:44px;height:44px;border-radius:13px;background:rgba(255,255,255,.14);display:grid;place-items:center;border:1px solid rgba(255,255,255,.18);font-size:23px}.brand h1{margin:0;font-size:21px;letter-spacing:-.45px}.brand p{margin:4px 0 0;color:#c8d8ed;font-size:11px;letter-spacing:.35px}.header-right{display:flex;align-items:center;gap:10px}.connection-chip{border:1px solid rgba(255,255,255,.23);background:rgba(255,255,255,.1);padding:8px 11px;border-radius:99px;font-size:10px;font-weight:750;letter-spacing:.4px;color:#e9f2ff}.container{max-width:1700px;margin:auto;padding:25px clamp(13px,3vw,42px) 42px}.intro{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;margin-bottom:17px;flex-wrap:wrap}.intro h2{margin:0;font-size:22px;letter-spacing:-.5px}.intro p{margin:6px 0 0;color:var(--muted);font-size:12px}.tabs{display:flex;gap:6px;padding:5px;background:#e9eef6;border-radius:12px;width:max-content;max-width:100%;overflow:auto}.tab{border:0;background:transparent;color:#52617a;padding:10px 14px;border-radius:9px;font-size:11px;font-weight:750;white-space:nowrap}.tab.active{background:#fff;color:var(--blue);box-shadow:0 2px 8px rgba(30,50,80,.08)}.panel{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow)}.toolbar{padding:16px 18px;display:flex;justify-content:space-between;align-items:center;gap:12px;border-bottom:1px solid var(--border);flex-wrap:wrap}.toolbar-left,.toolbar-right{display:flex;align-items:center;gap:9px;flex-wrap:wrap}.field-label{display:block;color:#56647b;font-size:10px;font-weight:800;letter-spacing:.45px;text-transform:uppercase;margin-bottom:6px}.field-control{border:1px solid var(--border);background:#fbfcfe;color:var(--text);border-radius:9px;padding:10px 11px;font-size:12px;outline:none;min-width:190px;max-width:100%}.field-control:focus,.search-input:focus,.column-filter:focus{border-color:#91b1ff;box-shadow:0 0 0 3px rgba(37,99,235,.1)}.btn{border:0;border-radius:9px;padding:10px 14px;font-size:11px;font-weight:800;transition:.15s ease}.btn-primary{background:var(--blue);color:#fff}.btn-primary:hover:not(:disabled){background:#194fc9}.btn-secondary{background:#edf2f8;color:#3d4c65}.btn-secondary:hover:not(:disabled){background:#e1e9f3}.btn-danger{background:var(--red-soft);color:var(--red)}.btn-green{background:var(--green);color:white}.btn-outline{background:white;border:1px solid var(--border);color:#4d5d76}.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:15px 0}.stat{padding:16px 18px}.stat-label{color:var(--muted);font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.5px}.stat-value{font-size:24px;font-weight:800;letter-spacing:-.7px;margin-top:7px}.stat-note{font-size:10px;color:#97a1b1;margin-top:3px}.search-wrap{position:relative;width:min(100%,460px)}.search-wrap span{position:absolute;left:13px;top:50%;transform:translateY(-50%);font-size:17px;color:#8a98ad}.search-input{width:100%;border:1px solid var(--border);background:#fbfcfe;border-radius:10px;padding:11px 12px 11px 38px;outline:none;font-size:12px}.table-meta{padding:11px 17px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;color:var(--muted);font-size:10px;border-bottom:1px solid var(--border)}.table-scroll{width:100%;overflow:auto;max-height:60vh;min-height:170px}table{width:100%;border-collapse:separate;border-spacing:0;white-space:nowrap;font-size:11px}th,td{padding:11px 13px;border-bottom:1px solid #edf0f5;text-align:left;max-width:340px}thead th{position:sticky;top:0;z-index:3;background:#f7f9fc;color:#40516c;font-weight:800;border-bottom:1px solid #dfe6f0}th.sortable{cursor:pointer;user-select:none}th.sortable:hover{color:var(--blue);background:#eef4ff}.filter-row th{top:40px;z-index:2;background:#fff;padding:7px 8px}.column-filter{min-width:100px;width:100%;border:1px solid #e1e7f0;border-radius:7px;padding:7px 8px;font-size:10px;outline:none}.sort-indicator{color:var(--blue);margin-left:5px}tbody td{color:#344158;overflow:hidden;text-overflow:ellipsis}tbody tr:hover td{background:#f7faff}.empty-state{text-align:center;padding:52px 18px;color:var(--muted)}.empty-state strong{display:block;color:#35445e;font-size:14px}.empty-state p{margin:6px 0 0;font-size:11px}.pagination{padding:13px 17px;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;border-top:1px solid var(--border)}.page-info{font-size:10px;color:var(--muted)}.page-buttons{display:flex;align-items:center;gap:5px}.page-btn{min-width:32px;height:31px;padding:0 8px;border:1px solid var(--border);background:white;border-radius:8px;color:#4c5a72;font-size:10px}.page-btn.active{background:var(--blue);color:white;border-color:var(--blue)}.page-btn:disabled{opacity:.4;cursor:not-allowed}.notice{margin-top:15px;padding:12px 14px;border-radius:11px;background:var(--amber-soft);border:1px solid #f2e1ba;color:#75571e;font-size:10px;line-height:1.65}.notice strong{color:#63470f}.status-line{display:flex;align-items:center;gap:8px;min-height:20px;margin:12px 2px 0;color:var(--muted);font-size:11px}.status-dot{width:7px;height:7px;border-radius:50%;background:#9aa8bc;flex:0 0 auto}.status-line.success{color:var(--green)}.status-line.success .status-dot{background:var(--green)}.status-line.error{color:var(--red)}.status-line.error .status-dot{background:var(--red)}.upload-layout{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(270px,.65fr);gap:15px}.section-card{padding:19px}.section-title{margin:0;font-size:15px;letter-spacing:-.2px}.section-subtitle{margin:5px 0 16px;color:var(--muted);font-size:11px;line-height:1.6}.dropzone{border:1.5px dashed #b9c8df;border-radius:13px;background:#f8faff;padding:22px;display:flex;align-items:center;gap:14px;min-height:105px;transition:.15s}.dropzone.dragover{background:var(--blue-soft);border-color:var(--blue)}.drop-icon{width:46px;height:46px;flex:0 0 auto;display:grid;place-items:center;border-radius:12px;background:var(--blue-soft);color:var(--blue);font-size:22px}.dropzone strong{display:block;font-size:12px}.dropzone span{display:block;color:var(--muted);font-size:10px;margin-top:5px;line-height:1.6}.file-meta{font-size:10px;color:var(--muted);margin-top:9px;overflow-wrap:anywhere}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}.form-field.full{grid-column:1/-1}.form-field label{display:block;font-size:10px;font-weight:800;color:#59667c;margin-bottom:6px}.form-field input,.form-field select{width:100%;border:1px solid var(--border);border-radius:9px;background:#fbfcfe;padding:10px;font-size:11px;outline:none;color:var(--text)}.form-field select[multiple]{min-height:135px;line-height:1.8}.help-text{font-size:10px;color:var(--muted);line-height:1.6;margin-top:6px}.file-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:14px}.progress-wrap{margin-top:16px;display:none}.progress-track{height:9px;background:#eaf0f7;border-radius:20px;overflow:hidden}.progress-bar{height:100%;background:linear-gradient(90deg,#2563eb,#62a0ff);width:0%;transition:width .15s}.progress-caption{display:flex;justify-content:space-between;gap:8px;color:var(--muted);font-size:10px;margin-top:7px}.preview-panel{margin-top:15px;padding:18px;display:none}.preview-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;margin:14px 0}.preview-stat{padding:12px;border:1px solid var(--border);border-radius:11px;background:#fbfcfe}.preview-stat .value{font-size:21px;font-weight:850;margin-top:6px}.preview-stat .label{font-size:9px;color:var(--muted);font-weight:800;text-transform:uppercase;letter-spacing:.3px}.preview-stat.good .value{color:var(--green)}.preview-stat.warn .value{color:var(--amber)}.preview-stat.bad .value{color:var(--red)}.preview-actions{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}.preview-note{padding:10px 12px;border-radius:9px;background:var(--blue-soft);color:#355b9c;font-size:10px;line-height:1.6;margin-bottom:14px}.history-table td{font-size:10px}.status-badge{display:inline-flex;align-items:center;padding:5px 8px;border-radius:30px;font-size:9px;font-weight:800;background:#edf2f8;color:#55637a}.status-badge.completed{background:var(--green-soft);color:var(--green)}.status-badge.rolled_back{background:var(--amber-soft);color:var(--amber)}.status-badge.uploading,.status-badge.previewed{background:var(--blue-soft);color:var(--blue)}.hidden{display:none!important}.footer{text-align:center;color:#9aa5b6;font-size:10px;margin-top:22px}.muted{color:var(--muted)}
+    *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,"Segoe UI",system-ui,-apple-system,sans-serif}button,input,select{font:inherit}button{cursor:pointer}button:disabled{opacity:.45;cursor:not-allowed}
+    .topbar{background:linear-gradient(115deg,var(--navy),var(--navy2));color:#fff;padding:20px clamp(16px,4vw,52px);box-shadow:0 4px 18px rgba(16,43,80,.16);border-radius:var(--radius);margin-bottom:25px}
+    .topbar-inner{max-width:1700px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .brand{display:flex;align-items:center;gap:13px}.brand-mark{width:44px;height:44px;border-radius:13px;background:rgba(255,255,255,.14);display:grid;place-items:center;border:1px solid rgba(255,255,255,.18);font-size:23px}.brand h1{margin:0;font-size:21px;letter-spacing:-.45px}.brand p{margin:4px 0 0;color:#c8d8ed;font-size:11px;letter-spacing:.35px}.header-right{display:flex;align-items:center;gap:10px}.connection-chip{border:1px solid rgba(255,255,255,.23);background:rgba(255,255,255,.1);padding:8px 11px;border-radius:99px;font-size:10px;font-weight:750;letter-spacing:.4px;color:#e9f2ff}
+    .container{max-width:1700px;margin:auto;padding:25px clamp(13px,3vw,42px) 42px}
+    .intro{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;margin-bottom:17px;flex-wrap:wrap}.intro h2{margin:0;font-size:22px;letter-spacing:-.5px}.intro p{margin:6px 0 0;color:var(--muted);font-size:12px}.tabs{display:flex;gap:6px;padding:5px;background:#e9eef6;border-radius:12px;width:max-content;max-width:100%;overflow:auto}.tab{border:0;background:transparent;color:#52617a;padding:10px 14px;border-radius:9px;font-size:11px;font-weight:750;white-space:nowrap}.tab.active{background:#fff;color:var(--blue);box-shadow:0 2px 8px rgba(30,50,80,.08)}
+    .panel{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow)}
+    .toolbar{padding:16px 18px;display:flex;justify-content:space-between;align-items:center;gap:12px;border-bottom:1px solid var(--border);flex-wrap:wrap}.toolbar-left,.toolbar-right{display:flex;align-items:center;gap:9px;flex-wrap:wrap}.field-label{display:block;color:#56647b;font-size:10px;font-weight:800;letter-spacing:.45px;text-transform:uppercase;margin-bottom:6px}.field-control{border:1px solid var(--border);background:#fbfcfe;color:var(--text);border-radius:9px;padding:10px 11px;font-size:12px;outline:none;min-width:190px;max-width:100%}.field-control:focus,.search-input:focus,.column-filter:focus{border-color:#91b1ff;box-shadow:0 0 0 3px rgba(37,99,235,.1)}
+    .btn{border:0;border-radius:9px;padding:10px 14px;font-size:11px;font-weight:800;transition:.15s ease}.btn-primary{background:var(--blue);color:#fff}.btn-primary:hover:not(:disabled){background:#194fc9}.btn-secondary{background:#edf2f8;color:#3d4c65}.btn-secondary:hover:not(:disabled){background:#e1e9f3}.btn-danger{background:var(--red-soft);color:var(--red)}.btn-green{background:var(--green);color:white}.btn-outline{background:white;border:1px solid var(--border);color:#4d5d76}
+    .stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:15px 0}.stat{padding:16px 18px}.stat-label{color:var(--muted);font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.5px}.stat-value{font-size:24px;font-weight:800;letter-spacing:-.7px;margin-top:7px}.stat-note{font-size:10px;color:#97a1b1;margin-top:3px}
+    .search-wrap{position:relative;width:min(100%,460px)}.search-wrap span{position:absolute;left:13px;top:50%;transform:translateY(-50%);font-size:17px;color:#8a98ad}.search-input{width:100%;border:1px solid var(--border);background:#fbfcfe;border-radius:10px;padding:11px 12px 11px 38px;outline:none;font-size:12px}
+    .table-meta{padding:11px 17px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;color:var(--muted);font-size:10px;border-bottom:1px solid var(--border)}.table-scroll{width:100%;overflow:auto;max-height:65vh;min-height:170px}table{width:100%;border-collapse:separate;border-spacing:0;white-space:nowrap;font-size:11px}th,td{padding:11px 13px;border-bottom:1px solid #edf0f5;text-align:left;max-width:340px}thead th{position:sticky;top:0;z-index:3;background:#f7f9fc;color:#40516c;font-weight:800;border-bottom:1px solid #dfe6f0}th.sortable{cursor:pointer;user-select:none}th.sortable:hover{color:var(--blue);background:#eef4ff}.filter-row th{top:40px;z-index:2;background:#fff;padding:7px 8px}.column-filter{min-width:100px;width:100%;border:1px solid #e1e7f0;border-radius:7px;padding:7px 8px;font-size:10px;outline:none}.sort-indicator{color:var(--blue);margin-left:5px}tbody td{color:#344158;overflow:hidden;text-overflow:ellipsis}tbody tr:hover td{background:#f7faff}
+    .empty-state{text-align:center;padding:52px 18px;color:var(--muted)}.empty-state strong{display:block;color:#35445e;font-size:14px}.empty-state p{margin:6px 0 0;font-size:11px}.pagination{padding:13px 17px;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;border-top:1px solid var(--border)}.page-info{font-size:10px;color:var(--muted)}.page-buttons{display:flex;align-items:center;gap:5px}.page-btn{min-width:32px;height:31px;padding:0 8px;border:1px solid var(--border);background:white;border-radius:8px;color:#4c5a72;font-size:10px}.page-btn.active{background:var(--blue);color:white;border-color:var(--blue)}.page-btn:disabled{opacity:.4;cursor:not-allowed}
+    .notice{margin-top:15px;padding:12px 14px;border-radius:11px;background:var(--amber-soft);border:1px solid #f2e1ba;color:#75571e;font-size:10px;line-height:1.65}.notice strong{color:#63470f}.status-line{display:flex;align-items:center;gap:8px;min-height:20px;margin:12px 2px 0;color:var(--muted);font-size:11px}.status-dot{width:7px;height:7px;border-radius:50%;background:#9aa8bc;flex:0 0 auto}.status-line.success{color:var(--green)}.status-line.success .status-dot{background:var(--green)}.status-line.error{color:var(--red)}.status-line.error .status-dot{background:var(--red)}
+    .upload-layout{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(270px,.65fr);gap:15px}.section-card{padding:19px}.section-title{margin:0;font-size:15px;letter-spacing:-.2px}.section-subtitle{margin:5px 0 16px;color:var(--muted);font-size:11px;line-height:1.6}
+    .dropzone{border:1.5px dashed #b9c8df;border-radius:13px;background:#f8faff;padding:22px;display:flex;align-items:center;gap:14px;min-height:105px;transition:.15s}.dropzone.dragover{background:var(--blue-soft);border-color:var(--blue)}.drop-icon{width:46px;height:46px;flex:0 0 auto;display:grid;place-items:center;border-radius:12px;background:var(--blue-soft);color:var(--blue);font-size:22px}.dropzone strong{display:block;font-size:12px}.dropzone span{display:block;color:var(--muted);font-size:10px;margin-top:5px;line-height:1.6}.file-meta{font-size:10px;color:var(--muted);margin-top:9px;overflow-wrap:anywhere}
+    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}.form-field.full{grid-column:1/-1}.form-field label{display:block;font-size:10px;font-weight:800;color:#59667c;margin-bottom:6px}.form-field input,.form-field select{width:100%;border:1px solid var(--border);border-radius:9px;background:#fbfcfe;padding:10px;font-size:11px;outline:none;color:var(--text)}.form-field select[multiple]{min-height:135px;line-height:1.8}.help-text{font-size:10px;color:var(--muted);line-height:1.6;margin-top:6px}
+    .file-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:14px}.progress-wrap{margin-top:16px;display:none}.progress-track{height:9px;background:#eaf0f7;border-radius:20px;overflow:hidden}.progress-bar{height:100%;background:linear-gradient(90deg,#2563eb,#62a0ff);width:0%;transition:width .15s}.progress-caption{display:flex;justify-content:space-between;gap:8px;color:var(--muted);font-size:10px;margin-top:7px}
+    .preview-panel{margin-top:15px;padding:18px;display:none}.preview-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;margin:14px 0}.preview-stat{padding:12px;border:1px solid var(--border);border-radius:11px;background:#fbfcfe}.preview-stat .value{font-size:21px;font-weight:850;margin-top:6px}.preview-stat .label{font-size:9px;color:var(--muted);font-weight:800;text-transform:uppercase;letter-spacing:.3px}.preview-stat.good .value{color:var(--green)}.preview-stat.warn .value{color:var(--amber)}.preview-stat.bad .value{color:var(--red)}.preview-actions{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}.preview-note{padding:10px 12px;border-radius:9px;background:var(--blue-soft);color:#355b9c;font-size:10px;line-height:1.6;margin-bottom:14px}
+    .history-table td{font-size:10px}.status-badge{display:inline-flex;align-items:center;padding:5px 8px;border-radius:30px;font-size:9px;font-weight:800;background:#edf2f8;color:#55637a}.status-badge.completed{background:var(--green-soft);color:var(--green)}.status-badge.rolled_back{background:var(--amber-soft);color:var(--amber)}.status-badge.uploading,.status-badge.previewed{background:var(--blue-soft);color:var(--blue)}
+    .hidden{display:none!important}.footer{text-align:center;color:#9aa5b6;font-size:10px;margin-top:22px}.muted{color:var(--muted)}
     @media(max-width:900px){.upload-layout{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.preview-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
     @media(max-width:560px){.topbar{padding-top:16px;padding-bottom:16px}.brand h1{font-size:18px}.connection-chip{display:none}.container{padding-top:18px}.intro{align-items:flex-start}.tabs{width:100%;justify-content:space-between}.tab{flex:1;padding:10px 8px}.toolbar{padding:13px}.toolbar-left,.toolbar-right{width:100%}.search-wrap{width:100%}.stats{gap:8px}.stat{padding:13px}.stat-value{font-size:21px}.section-card{padding:14px}.form-grid{grid-template-columns:1fr}.preview-actions{align-items:stretch}.preview-actions .btn{flex:1}}
   </style>
 </head>
 <body>
-  <header class="topbar">
-    <div class="topbar-inner">
-      <div class="brand">
-        <div class="brand-mark" aria-hidden="true">⌕</div>
-        <div><h1>KING ZIEL APP</h1><p>INTERNAL DATA MANAGEMENT SYSTEM</p></div>
-      </div>
-      <div class="header-right"><div class="connection-chip" id="connectionChip">● MENGHUBUNGKAN DATABASE</div></div>
-    </div>
-  </header>
-
-  <main class="container">
-    <section class="intro">
-      <div><h2 id="pageHeading">Pencarian Data</h2><p id="pageDescription">Cari data dari database pusat kantor, tanpa perlu upload ulang setiap kali membuka aplikasi.</p></div>
+  <main class="container" style="padding-top: 25px;">
+    
+    <!-- ========================================== -->
+    <!-- REVISI: TABS & TABLE DIPINDAH KE PALING ATAS -->
+    <!-- ========================================== -->
+    <section class="intro" style="margin-bottom: 20px;">
       <nav class="tabs" aria-label="Menu aplikasi">
         <button class="tab active" data-view="search" type="button">⌕ Pencarian</button>
         <button class="tab" data-view="update" type="button">⇧ Update Database</button>
         <button class="tab" data-view="history" type="button">◷ Riwayat</button>
       </nav>
+      <div style="text-align:right;">
+         <h2 id="pageHeading">Pencarian Data</h2>
+         <p id="pageDescription">Cari data dari database pusat kantor tanpa perlu scroll.</p>
+      </div>
     </section>
 
     <section id="view-search">
+      <!-- Search Bar Langsung di Atas -->
       <section class="panel toolbar">
         <div class="toolbar-left">
           <div><label class="field-label" for="datasetSelect">Pilih database</label><select class="field-control" id="datasetSelect"><option value="">Belum ada database</option></select></div>
-          <div class="search-wrap"><span aria-hidden="true">⌕</span><input class="search-input" id="globalSearch" type="search" placeholder="Cari nama, nomor kontrak, alamat, atau data apa pun..." autocomplete="off" disabled></div>
+          <div class="search-wrap"><span aria-hidden="true">⌕</span><input class="search-input" id="globalSearch" type="search" placeholder="Ketik apa saja untuk mencari data..." autocomplete="off" disabled></div>
         </div>
         <div class="toolbar-right">
           <label class="muted" style="font-size:10px">Baris <select id="pageSize" class="field-control" style="min-width:75px;padding:9px" disabled><option>25</option><option selected>50</option><option>100</option><option>250</option></select></label>
           <button class="btn btn-secondary" id="exportPageBtn" type="button" disabled>⇩ Export halaman</button>
         </div>
       </section>
-      <section class="stats">
-        <div class="panel stat"><div class="stat-label">Total Data</div><div class="stat-value" id="totalCount">0</div><div class="stat-note">Record dalam database</div></div>
-        <div class="panel stat"><div class="stat-label">Hasil Ditemukan</div><div class="stat-value" id="resultCount">0</div><div class="stat-note">Sesuai pencarian dan filter</div></div>
-        <div class="panel stat"><div class="stat-label">Jumlah Kolom</div><div class="stat-value" id="columnCount">0</div><div class="stat-note">Kolom dari master data</div></div>
-        <div class="panel stat"><div class="stat-label">Halaman</div><div class="stat-value" id="pageCount">0 / 0</div><div class="stat-note">Navigasi hasil pencarian</div></div>
-      </section>
-      <section class="panel">
+      
+      <!-- Tabel Langsung di Bawah Search Bar -->
+      <section class="panel" style="margin-top:15px;">
         <div class="toolbar"><div class="toolbar-left"><strong style="font-size:12px">Data tersimpan</strong><span class="muted" id="datasetUpdated" style="font-size:10px">Database belum dipilih</span></div><div class="toolbar-right"><button class="btn btn-outline" id="filterToggle" type="button" disabled>☷ Sembunyikan Filter</button></div></div>
         <div class="table-meta"><span id="tableSummary">Belum ada data untuk ditampilkan.</span><span id="sortSummary">Klik judul kolom untuk mengurutkan.</span></div>
         <div class="table-scroll" id="tableScroll"><table id="dataTable"><thead id="tableHeader"></thead><tbody id="tableBody"></tbody></table><div class="empty-state" id="emptyState"><strong id="emptyTitle">Database masih kosong</strong><p id="emptyDescription">Buka menu Update Database untuk memasukkan file master pertama.</p></div></div>
         <div class="pagination"><div class="page-info" id="pageInfo">Menampilkan 0 data</div><div class="page-buttons"><button class="page-btn" id="prevPage" type="button" disabled>‹</button><span id="pageNumbers"></span><button class="page-btn" id="nextPage" type="button" disabled>›</button></div></div>
       </section>
+
+      <!-- Statistik Pindah ke Bawah Tabel -->
+      <section class="stats" style="margin-top:15px;">
+        <div class="panel stat"><div class="stat-label">Total Data</div><div class="stat-value" id="totalCount">0</div><div class="stat-note">Record dalam database</div></div>
+        <div class="panel stat"><div class="stat-label">Hasil Ditemukan</div><div class="stat-value" id="resultCount">0</div><div class="stat-note">Sesuai pencarian dan filter</div></div>
+        <div class="panel stat"><div class="stat-label">Jumlah Kolom</div><div class="stat-value" id="columnCount">0</div><div class="stat-note">Kolom dari master data</div></div>
+        <div class="panel stat"><div class="stat-label">Halaman</div><div class="stat-value" id="pageCount">0 / 0</div><div class="stat-note">Navigasi hasil pencarian</div></div>
+      </section>
+
       <div class="notice"><strong>Data terpusat:</strong> hasil pencarian diambil dari database backend, bukan penyimpanan browser. Semua rekan kantor menggunakan sumber data yang sama. Jangan memasukkan data pribadi customer ke repository GitHub atau file publik.</div>
     </section>
 
@@ -109,6 +140,24 @@
         <div class="table-scroll"><table class="history-table"><thead><tr><th>Waktu</th><th>Database</th><th>File</th><th>Status</th><th>Ditambahkan</th><th>Diperbarui</th><th>Duplikat</th><th>Aksi</th></tr></thead><tbody id="historyBody"></tbody></table><div class="empty-state hidden" id="historyEmpty"><strong>Belum ada riwayat import</strong><p>Riwayat akan tampil setelah file pertama berhasil diproses.</p></div></div>
       </section>
     </section>
+
+    <!-- ========================================== -->
+    <!-- HEADER & BRANDING DIPINDAH KE PALING BAWAH -->
+    <!-- ========================================== -->
+    <div style="margin-top: 40px; margin-bottom: 15px;">
+       <p style="font-size:12px; color:var(--muted); margin:0;">Sistem Manajemen Data Internal</p>
+    </div>
+
+    <header class="topbar" style="margin-top: 0;">
+      <div class="topbar-inner">
+        <div class="brand">
+          <div class="brand-mark" aria-hidden="true">⌕</div>
+          <div><h1>KING ZIEL APP</h1><p>INTERNAL DATA MANAGEMENT SYSTEM</p></div>
+        </div>
+        <div class="header-right"><div class="connection-chip" id="connectionChip">● MENGHUBUNGKAN DATABASE</div></div>
+      </div>
+    </header>
+
     <div class="footer">KING ZIEL APP · Dibuat dengan ♥ oleh Yusuf Zulkarnaen</div>
   </main>
 
@@ -123,6 +172,9 @@
       showFilters: true, parsed: null, importId: '', preview: null, importHeaderMap: {}, accessKey: '',
       authRequired: false, busy: false, searchTimer: null, importDatasetId: ''
     };
+
+    // State cache untuk mencegah render ulang (penyebab fokus ilang)
+    let renderedHeadersKey = ''; 
 
     async function request(path, options = {}) {
       const headers = new Headers(options.headers || {});
@@ -152,7 +204,7 @@
       document.querySelectorAll('.tab').forEach(tab => tab.classList.toggle('active', tab.dataset.view === view));
       ['search','update','history'].forEach(name => $(`view-${name}`).classList.toggle('hidden', name !== view));
       const headings = {
-        search: ['Pencarian Data', 'Cari data dari database pusat kantor, tanpa perlu upload ulang setiap kali membuka aplikasi.'],
+        search: ['Pencarian Data', 'Cari data dari database pusat kantor tanpa perlu scroll.'],
         update: ['Update Database', 'Upload master Excel terbaru, periksa hasil analisis, lalu terapkan perubahan ke SQL.'],
         history: ['Riwayat Update', 'Pantau proses import sebelumnya dan batalkan import yang masih aman untuk di-rollback.']
       };
@@ -261,8 +313,9 @@
     }
 
     function renderTable() {
-      const thead = $('tableHeader'); const tbody = $('tableBody');
-      thead.replaceChildren(); tbody.replaceChildren();
+      const thead = $('tableHeader'); 
+      const tbody = $('tableBody');
+      
       if (!state.headers.length) {
         $('dataTable').classList.add('hidden'); $('emptyState').classList.remove('hidden');
         $('emptyTitle').textContent = state.selectedDatasetId ? 'Dataset belum memiliki data' : 'Database masih kosong';
@@ -270,38 +323,71 @@
         $('filterToggle').disabled = true;
         return;
       }
+      
       $('dataTable').classList.toggle('hidden', !state.rows.length);
       $('emptyState').classList.toggle('hidden', Boolean(state.rows.length));
       $('emptyTitle').textContent = 'Data tidak ditemukan';
       $('emptyDescription').textContent = 'Coba kata kunci atau filter lain.';
 
-      const headRow = document.createElement('tr');
-      const numberHeader = document.createElement('th'); numberHeader.textContent = '#'; headRow.appendChild(numberHeader);
-      state.headers.forEach(header => {
-        const th = document.createElement('th'); th.className = 'sortable';
-        th.textContent = header + (state.sort === header ? (state.direction === 'asc' ? ' ↑' : ' ↓') : '');
-        th.addEventListener('click', () => {
-          if (state.sort === header) state.direction = state.direction === 'asc' ? 'desc' : 'asc';
-          else { state.sort = header; state.direction = 'asc'; }
-          loadRows(true);
-        });
-        headRow.appendChild(th);
-      });
-      thead.appendChild(headRow);
+      // === FIX BUG FOKUS INPUT & LAG ===
+      // Kita cuma bikin ulang elemen THEAD (judul & kotak filter) 
+      // kalau kolom databasenya bener-bener ganti.
+      const currentHeadersString = JSON.stringify(state.headers);
+      const headersChanged = renderedHeadersKey !== currentHeadersString;
 
-      const filterRow = document.createElement('tr'); filterRow.className = 'filter-row';
-      filterRow.appendChild(document.createElement('th'));
-      state.headers.forEach(header => {
-        const th = document.createElement('th'); const input = document.createElement('input');
-        input.className = 'column-filter'; input.type = 'search'; input.placeholder = `Filter ${header}`; input.value = state.filters[header] || '';
-        input.addEventListener('input', () => { state.filters[header] = input.value; state.page = 1; scheduleSearch(); });
-        th.appendChild(input); filterRow.appendChild(th);
-      });
-      thead.appendChild(filterRow);
-      filterRow.classList.toggle('hidden', !state.showFilters);
+      if (headersChanged) {
+        renderedHeadersKey = currentHeadersString;
+        thead.replaceChildren();
+        
+        // Bikin Judul Kolom
+        const headRow = document.createElement('tr');
+        const numberHeader = document.createElement('th'); numberHeader.textContent = '#'; headRow.appendChild(numberHeader);
+        state.headers.forEach(header => {
+          const th = document.createElement('th'); th.className = 'sortable';
+          th.textContent = header + (state.sort === header ? (state.direction === 'asc' ? ' ↑' : ' ↓') : '');
+          th.addEventListener('click', () => {
+            if (state.sort === header) state.direction = state.direction === 'asc' ? 'desc' : 'asc';
+            else { state.sort = header; state.direction = 'asc'; }
+            loadRows(true);
+          });
+          headRow.appendChild(th);
+        });
+        thead.appendChild(headRow);
+
+        // Bikin Baris Input Filter
+        const filterRow = document.createElement('tr'); filterRow.className = 'filter-row';
+        filterRow.appendChild(document.createElement('th'));
+        state.headers.forEach(header => {
+          const th = document.createElement('th'); const input = document.createElement('input');
+          input.className = 'column-filter'; input.type = 'search'; input.placeholder = `Filter ${header}`; input.value = state.filters[header] || '';
+          input.addEventListener('input', (e) => { 
+            state.filters[header] = e.target.value; 
+            state.page = 1; 
+            scheduleSearch(); 
+          });
+          th.appendChild(input); filterRow.appendChild(th);
+        });
+        thead.appendChild(filterRow);
+      } else {
+        // Kalau header sama (cuma update data), cuma update panah sortingnya aja
+        // Ini yang bikin input ga kerender ulang & fokus ga ilang!
+        const headRow = thead.querySelector('tr:first-child');
+        if (headRow) {
+           const ths = headRow.querySelectorAll('th');
+           ths.forEach((th, index) => {
+             if (index === 0) return;
+             const header = state.headers[index - 1];
+             th.textContent = header + (state.sort === header ? (state.direction === 'asc' ? ' ↑' : ' ↓') : '');
+           });
+        }
+      }
+
+      const filterRow = thead.querySelector('.filter-row');
+      if (filterRow) filterRow.classList.toggle('hidden', !state.showFilters);
       $('filterToggle').classList.toggle('active', state.showFilters);
       $('filterToggle').textContent = state.showFilters ? '☷ Sembunyikan Filter' : '☷ Tampilkan Filter';
 
+      // Render Isi Tabel (Bebas dihapus/dibuat ulang tanpa ngaruh ke kotak input)
       const fragment = document.createDocumentFragment();
       state.rows.forEach((record, index) => {
         const tr = document.createElement('tr');
@@ -312,12 +398,13 @@
         });
         fragment.appendChild(tr);
       });
-      tbody.appendChild(fragment);
+      tbody.replaceChildren(fragment);
     }
 
     function scheduleSearch() {
       clearTimeout(state.searchTimer);
-      state.searchTimer = setTimeout(() => loadRows(true), 260);
+      // Turunin debounce jadi 150ms biar respon berasa instan kaya DB Browser
+      state.searchTimer = setTimeout(() => loadRows(true), 150);
     }
 
     function renderPagination() {
@@ -328,10 +415,6 @@
         if (last && n-last>1) { const dots=document.createElement('span'); dots.textContent='…'; dots.style.padding='0 4px'; holder.appendChild(dots); }
         const btn=document.createElement('button'); btn.className=`page-btn${n===state.page?' active':''}`; btn.type='button'; btn.textContent=String(n); btn.addEventListener('click',()=>{state.page=n;loadRows();}); holder.appendChild(btn); last=n;
       });
-    }
-
-    function renderTableAndPages() {
-      renderTable(); renderPagination();
     }
 
     function exportCurrentPage() {
@@ -560,7 +643,12 @@
     $('datasetSelect').addEventListener('change',async event=>{state.selectedDatasetId=event.target.value;state.query='';state.filters={};state.sort='';$('globalSearch').value='';await loadRows(true);});
     $('globalSearch').addEventListener('input',event=>{state.query=event.target.value;state.page=1;scheduleSearch();});
     $('pageSize').addEventListener('change',event=>{state.pageSize=Number(event.target.value)||50;loadRows(true);});
-    $('filterToggle').addEventListener('click',()=>{state.showFilters=!state.showFilters;const row=$('tableHeader').querySelector('.filter-row');if(row)row.classList.toggle('hidden',!state.showFilters);$('filterToggle').textContent=state.showFilters?'☷ Sembunyikan Filter':'☷ Tampilkan Filter';});
+    $('filterToggle').addEventListener('click',()=>{
+      state.showFilters=!state.showFilters;
+      const row=$('tableHeader').querySelector('.filter-row');
+      if(row) row.classList.toggle('hidden',!state.showFilters);
+      $('filterToggle').textContent=state.showFilters?'☷ Sembunyikan Filter':'☷ Tampilkan Filter';
+    });
     $('prevPage').addEventListener('click',()=>{if(state.page>1){state.page--;loadRows();}});
     $('nextPage').addEventListener('click',()=>{state.page++;loadRows();});
     $('exportPageBtn').addEventListener('click',exportCurrentPage);
