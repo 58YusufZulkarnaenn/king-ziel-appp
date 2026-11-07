@@ -7,7 +7,6 @@
   <meta name="description" content="KING ZIEL APP — pencarian dan pengelolaan database internal.">
   <title>KING ZIEL APP | Internal Data Hub</title>
   
-  <!-- Script buat bersihin URL dari embel-embel ChatGPT/AI -->
   <script>
     if (window.location.search.includes('utm_source')) {
       window.history.replaceState(null, '', window.location.pathname);
@@ -28,7 +27,7 @@
     .btn{border:0;border-radius:9px;padding:10px 14px;font-size:11px;font-weight:800;transition:.15s ease}.btn-primary{background:var(--blue);color:#fff}.btn-primary:hover:not(:disabled){background:#194fc9}.btn-secondary{background:#edf2f8;color:#3d4c65}.btn-secondary:hover:not(:disabled){background:#e1e9f3}.btn-danger{background:var(--red-soft);color:var(--red)}.btn-green{background:var(--green);color:white}.btn-outline{background:white;border:1px solid var(--border);color:#4d5d76}
     .stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:15px 0}.stat{padding:16px 18px}.stat-label{color:var(--muted);font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.5px}.stat-value{font-size:24px;font-weight:800;letter-spacing:-.7px;margin-top:7px}.stat-note{font-size:10px;color:#97a1b1;margin-top:3px}
     .search-wrap{position:relative;width:min(100%,460px)}.search-wrap span{position:absolute;left:13px;top:50%;transform:translateY(-50%);font-size:17px;color:#8a98ad}.search-input{width:100%;border:1px solid var(--border);background:#fbfcfe;border-radius:10px;padding:11px 12px 11px 38px;outline:none;font-size:12px}
-    .table-meta{padding:11px 17px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;color:var(--muted);font-size:10px;border-bottom:1px solid var(--border)}.table-scroll{width:100%;overflow:auto;max-height:65vh;min-height:170px}table{width:100%;border-collapse:separate;border-spacing:0;white-space:nowrap;font-size:11px}th,td{padding:11px 13px;border-bottom:1px solid #edf0f5;text-align:left;max-width:340px}thead th{position:sticky;top:0;z-index:3;background:#f7f9fc;color:#40516c;font-weight:800;border-bottom:1px solid #dfe6f0}th.sortable{cursor:pointer;user-select:none}th.sortable:hover{color:var(--blue);background:#eef4ff}.filter-row th{top:40px;z-index:2;background:#fff;padding:7px 8px}.column-filter{min-width:100px;width:100%;border:1px solid #e1e7f0;border-radius:7px;padding:7px 8px;font-size:10px;outline:none}.sort-indicator{color:var(--blue);margin-left:5px}tbody td{color:#344158;overflow:hidden;text-overflow:ellipsis}tbody tr:hover td{background:#f7faff}
+    .table-meta{padding:11px 17px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;color:var(--muted);font-size:10px;border-bottom:1px solid var(--border)}.table-scroll{width:100%;overflow:auto;max-height:65vh;min-height:170px}table{width:100%;border-collapse:separate;border-spacing:0;white-space:nowrap;font-size:11px}th,td{padding:11px 13px;border-bottom:1px solid #edf0f5;text-align:left;max-width:340px}thead th{position:sticky;top:0;z-index:3;background:#f7f9fc;color:#40516c;font-weight:800;border-bottom:1px solid #dfe6f0}th.sortable{cursor:pointer;user-select:none}th.sortable:hover{color:var(--blue);background:#eef4ff}.filter-row th{top:40px;z-index:2;background:#fff;padding:7px 8px}.column-filter{min-width:100px;width:100%;border:1px solid #e1e7f0;border-radius:7px;padding:7px 8px;font-size:10px;outline:none}tbody td{color:#344158;overflow:hidden;text-overflow:ellipsis}tbody tr:hover td{background:#f7faff}
     .empty-state{text-align:center;padding:52px 18px;color:var(--muted)}.empty-state strong{display:block;color:#35445e;font-size:14px}.empty-state p{margin:6px 0 0;font-size:11px}.pagination{padding:13px 17px;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;border-top:1px solid var(--border)}.page-info{font-size:10px;color:var(--muted)}.page-buttons{display:flex;align-items:center;gap:5px}.page-btn{min-width:32px;height:31px;padding:0 8px;border:1px solid var(--border);background:white;border-radius:8px;color:#4c5a72;font-size:10px}.page-btn.active{background:var(--blue);color:white;border-color:var(--blue)}.page-btn:disabled{opacity:.4;cursor:not-allowed}
     .notice{margin-top:15px;padding:12px 14px;border-radius:11px;background:var(--amber-soft);border:1px solid #f2e1ba;color:#75571e;font-size:10px;line-height:1.65}.notice strong{color:#63470f}.status-line{display:flex;align-items:center;gap:8px;min-height:20px;margin:12px 2px 0;color:var(--muted);font-size:11px}.status-dot{width:7px;height:7px;border-radius:50%;background:#9aa8bc;flex:0 0 auto}.status-line.success{color:var(--green)}.status-line.success .status-dot{background:var(--green)}.status-line.error{color:var(--red)}.status-line.error .status-dot{background:var(--red)}
     .upload-layout{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(270px,.65fr);gap:15px}.section-card{padding:19px}.section-title{margin:0;font-size:15px;letter-spacing:-.2px}.section-subtitle{margin:5px 0 16px;color:var(--muted);font-size:11px;line-height:1.6}
@@ -37,6 +36,15 @@
     .file-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:14px}.progress-wrap{margin-top:16px;display:none}.progress-track{height:9px;background:#eaf0f7;border-radius:20px;overflow:hidden}.progress-bar{height:100%;background:linear-gradient(90deg,#2563eb,#62a0ff);width:0%;transition:width .15s}.progress-caption{display:flex;justify-content:space-between;gap:8px;color:var(--muted);font-size:10px;margin-top:7px}
     .preview-panel{margin-top:15px;padding:18px;display:none}.preview-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;margin:14px 0}.preview-stat{padding:12px;border:1px solid var(--border);border-radius:11px;background:#fbfcfe}.preview-stat .value{font-size:21px;font-weight:850;margin-top:6px}.preview-stat .label{font-size:9px;color:var(--muted);font-weight:800;text-transform:uppercase;letter-spacing:.3px}.preview-stat.good .value{color:var(--green)}.preview-stat.warn .value{color:var(--amber)}.preview-stat.bad .value{color:var(--red)}.preview-actions{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}.preview-note{padding:10px 12px;border-radius:9px;background:var(--blue-soft);color:#355b9c;font-size:10px;line-height:1.6;margin-bottom:14px}
     .history-table td{font-size:10px}.status-badge{display:inline-flex;align-items:center;padding:5px 8px;border-radius:30px;font-size:9px;font-weight:800;background:#edf2f8;color:#55637a}.status-badge.completed{background:var(--green-soft);color:var(--green)}.status-badge.rolled_back{background:var(--amber-soft);color:var(--amber)}.status-badge.uploading,.status-badge.previewed{background:var(--blue-soft);color:var(--blue)}
+    
+    /* Indikator mode instan */
+    .instant-badge{display:inline-flex;align-items:center;gap:5px;padding:6px 10px;border-radius:20px;font-size:10px;font-weight:800;background:linear-gradient(135deg,#e9f8f0,#d1f0dd);color:#0d7a4f;border:1px solid #b8e5cc;transition:all .3s ease}
+    .instant-badge.loading{background:#fff7e8;color:#a56a12;border-color:#f2e1ba}
+    .instant-badge.loading .dot-loader{display:inline-block;width:8px;height:8px;border:2px solid #a56a12;border-top-color:transparent;border-radius:50%;animation:spin .8s linear infinite}
+    .instant-badge .bolt{font-size:11px}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    .instant-badge.hidden{display:none}
+    
     .hidden{display:none!important}.footer{text-align:center;color:#9aa5b6;font-size:10px;margin-top:22px}.muted{color:var(--muted)}
     @media(max-width:900px){.upload-layout{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.preview-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
     @media(max-width:560px){.topbar{padding-top:16px;padding-bottom:16px}.brand h1{font-size:18px}.connection-chip{display:none}.container{padding-top:18px}.intro{align-items:flex-start}.tabs{width:100%;justify-content:space-between}.tab{flex:1;padding:10px 8px}.toolbar{padding:13px}.toolbar-left,.toolbar-right{width:100%}.search-wrap{width:100%}.stats{gap:8px}.stat{padding:13px}.stat-value{font-size:21px}.section-card{padding:14px}.form-grid{grid-template-columns:1fr}.preview-actions{align-items:stretch}.preview-actions .btn{flex:1}}
@@ -45,9 +53,6 @@
 <body>
   <main class="container" style="padding-top: 25px;">
     
-    <!-- ========================================== -->
-    <!-- REVISI: TABS & TABLE DIPINDAH KE PALING ATAS -->
-    <!-- ========================================== -->
     <section class="intro" style="margin-bottom: 20px;">
       <nav class="tabs" aria-label="Menu aplikasi">
         <button class="tab active" data-view="search" type="button">⌕ Pencarian</button>
@@ -61,19 +66,18 @@
     </section>
 
     <section id="view-search">
-      <!-- Search Bar Langsung di Atas -->
       <section class="panel toolbar">
         <div class="toolbar-left">
           <div><label class="field-label" for="datasetSelect">Pilih database</label><select class="field-control" id="datasetSelect"><option value="">Belum ada database</option></select></div>
           <div class="search-wrap"><span aria-hidden="true">⌕</span><input class="search-input" id="globalSearch" type="search" placeholder="Ketik apa saja untuk mencari data..." autocomplete="off" disabled></div>
         </div>
         <div class="toolbar-right">
+          <span class="instant-badge hidden" id="instantBadge"><span class="bolt">⚡</span><span id="instantText">Mode Instan</span></span>
           <label class="muted" style="font-size:10px">Baris <select id="pageSize" class="field-control" style="min-width:75px;padding:9px" disabled><option>25</option><option selected>50</option><option>100</option><option>250</option></select></label>
           <button class="btn btn-secondary" id="exportPageBtn" type="button" disabled>⇩ Export halaman</button>
         </div>
       </section>
       
-      <!-- Tabel Langsung di Bawah Search Bar -->
       <section class="panel" style="margin-top:15px;">
         <div class="toolbar"><div class="toolbar-left"><strong style="font-size:12px">Data tersimpan</strong><span class="muted" id="datasetUpdated" style="font-size:10px">Database belum dipilih</span></div><div class="toolbar-right"><button class="btn btn-outline" id="filterToggle" type="button" disabled>☷ Sembunyikan Filter</button></div></div>
         <div class="table-meta"><span id="tableSummary">Belum ada data untuk ditampilkan.</span><span id="sortSummary">Klik judul kolom untuk mengurutkan.</span></div>
@@ -81,7 +85,6 @@
         <div class="pagination"><div class="page-info" id="pageInfo">Menampilkan 0 data</div><div class="page-buttons"><button class="page-btn" id="prevPage" type="button" disabled>‹</button><span id="pageNumbers"></span><button class="page-btn" id="nextPage" type="button" disabled>›</button></div></div>
       </section>
 
-      <!-- Statistik Pindah ke Bawah Tabel -->
       <section class="stats" style="margin-top:15px;">
         <div class="panel stat"><div class="stat-label">Total Data</div><div class="stat-value" id="totalCount">0</div><div class="stat-note">Record dalam database</div></div>
         <div class="panel stat"><div class="stat-label">Hasil Ditemukan</div><div class="stat-value" id="resultCount">0</div><div class="stat-note">Sesuai pencarian dan filter</div></div>
@@ -141,9 +144,6 @@
       </section>
     </section>
 
-    <!-- ========================================== -->
-    <!-- HEADER & BRANDING DIPINDAH KE PALING BAWAH -->
-    <!-- ========================================== -->
     <div style="margin-top: 40px; margin-bottom: 15px;">
        <p style="font-size:12px; color:var(--muted); margin:0;">Sistem Manajemen Data Internal</p>
     </div>
@@ -170,11 +170,15 @@
       datasets: [], selectedDatasetId: '', headers: [], rows: [], total: 0, datasetTotal: 0,
       page: 1, pageSize: 50, query: '', filters: {}, sort: '', direction: 'asc',
       showFilters: true, parsed: null, importId: '', preview: null, importHeaderMap: {}, accessKey: '',
-      authRequired: false, busy: false, searchTimer: null, importDatasetId: ''
+      authRequired: false, busy: false, searchTimer: null, importDatasetId: '',
+      // === STATE BARU UNTUK CLIENT-SIDE CACHE ===
+      cachedRecords: null,     // null = belum siap, Array = siap dipakai
+      cacheLoading: false,
+      cacheDatasetId: ''
     };
 
-    // State cache untuk mencegah render ulang (penyebab fokus ilang)
     let renderedHeadersKey = ''; 
+    let searchAbortController = null;
 
     async function request(path, options = {}) {
       const headers = new Headers(options.headers || {});
@@ -190,9 +194,40 @@
         response = await fetch(path, { ...options, headers, cache: 'no-store' });
       }
       let payload = {};
-      try { payload = await response.json(); } catch { /* ignore empty response */ }
+      try { payload = await response.json(); } catch { /* ignore */ }
       if (!response.ok) throw new Error(payload.error || `Request gagal (${response.status}).`);
       return payload;
+    }
+
+    // === UI BADGE UNTUK MODE INSTAN ===
+    function setInstantBadge(status) {
+      const badge = $('instantBadge');
+      const text = $('instantText');
+      if (status === 'loading') {
+        badge.classList.remove('hidden');
+        badge.classList.add('loading');
+        text.textContent = 'Menyiapkan Cache…';
+        badge.querySelector('.bolt').textContent = '';
+        // Ganti ikon jadi spinner
+        let spinner = badge.querySelector('.dot-loader');
+        if (!spinner) {
+          spinner = document.createElement('span');
+          spinner.className = 'dot-loader';
+          badge.prepend(spinner);
+        }
+        badge.querySelector('.bolt').classList.add('hidden');
+      } else if (status === 'ready') {
+        badge.classList.remove('hidden','loading');
+        badge.classList.remove('loading');
+        const spinner = badge.querySelector('.dot-loader');
+        if (spinner) spinner.remove();
+        const bolt = badge.querySelector('.bolt');
+        bolt.classList.remove('hidden');
+        bolt.textContent = '⚡';
+        text.textContent = 'Mode Instan Aktif';
+      } else {
+        badge.classList.add('hidden');
+      }
     }
 
     function setImportStatus(message, type = 'normal') {
@@ -243,12 +278,55 @@
       const choose = preferredId || state.selectedDatasetId;
       const selected = state.datasets.find(item => item.id === choose) || state.datasets[0] || null;
       state.selectedDatasetId = selected?.id || '';
+      // Reset cache saat ganti dataset
+      if (state.cacheDatasetId !== state.selectedDatasetId) {
+        state.cachedRecords = null;
+        state.cacheDatasetId = state.selectedDatasetId;
+        setInstantBadge('hidden');
+      }
       renderDatasetSelectors();
-      if (selected) await loadRows(true);
-      else {
+      if (selected) {
+        await loadRows(true);
+        loadFullCache(state.selectedDatasetId); // background cache
+      } else {
         state.headers = []; state.rows = []; state.total = 0; state.datasetTotal = 0;
         $('globalSearch').disabled = true; $('pageSize').disabled = true; $('filterToggle').disabled = true;
         renderSearch();
+      }
+    }
+
+    // === LOAD SEMUA DATA KE CACHE (BACKGROUND) ===
+    async function loadFullCache(datasetId) {
+      if (!datasetId) return;
+      state.cachedRecords = null;
+      state.cacheLoading = true;
+      setInstantBadge('loading');
+      try {
+        const all = [];
+        let page = 1;
+        const size = 1000;
+        while (true) {
+          if (state.selectedDatasetId !== datasetId) return; // dataset berganti, batal
+          const params = new URLSearchParams({
+            datasetId, page: String(page), pageSize: String(size),
+            q: '', sort: '', direction: 'asc', filters: '{}'
+          });
+          const result = await request(`/api/records?${params}`);
+          all.push(...(result.rows || []));
+          if (page >= (result.pages || 0)) break;
+          page++;
+        }
+        if (state.selectedDatasetId === datasetId) {
+          state.cachedRecords = all;
+          state.cacheLoading = false;
+          setInstantBadge('ready');
+          // Refresh tampilan pakai mode instan
+          applyClientSearch();
+        }
+      } catch (e) {
+        console.warn('[cache] gagal load cache:', e);
+        state.cacheLoading = false;
+        setInstantBadge('hidden');
       }
     }
 
@@ -272,12 +350,22 @@
     async function loadRows(resetPage = false) {
       if (!state.selectedDatasetId) return;
       if (resetPage) state.page = 1;
+
+      // === JIKA CACHE SUDAH SIAP, PAKAI CLIENT-SIDE (INSTAN) ===
+      if (state.cachedRecords !== null) {
+        applyClientSearch();
+        return;
+      }
+
+      // Fallback: server-side (kalau cache belum siap)
       const params = new URLSearchParams({
         datasetId: state.selectedDatasetId, page: String(state.page), pageSize: String(state.pageSize),
         q: state.query, sort: state.sort, direction: state.direction, filters: JSON.stringify(state.filters)
       });
       try {
-        const result = await request(`/api/records?${params}`);
+        if (searchAbortController) searchAbortController.abort();
+        searchAbortController = new AbortController();
+        const result = await request(`/api/records?${params}`, { signal: searchAbortController.signal });
         if (result.pages > 0 && state.page > result.pages) { state.page = result.pages; return loadRows(); }
         if (result.pages === 0) state.page = 1;
         state.headers = result.dataset.headers || [];
@@ -288,8 +376,78 @@
         $('datasetUpdated').textContent = selectedDataset?.updated_at ? `Terakhir diperbarui ${new Date(selectedDataset.updated_at).toLocaleString('id-ID')}` : 'Database dipilih';
         renderSearch(result.pages || 0);
       } catch (error) {
+        if (error.name === 'AbortError') return; // request lama dibatalkan
         showFatal(error.message);
       }
+    }
+
+    // === FUNGSI INTI: FILTER & PAGINATION DI BROWSER (INSTAN) ===
+    function applyClientSearch() {
+      const all = state.cachedRecords || [];
+      const q = state.query.toLowerCase().trim();
+      let filtered = all;
+
+      // Filter global (search bar)
+      if (q) {
+        filtered = filtered.filter(r => {
+          const data = r.data || {};
+          for (const k in data) {
+            if (String(data[k] ?? '').toLowerCase().includes(q)) return true;
+          }
+          return false;
+        });
+      }
+
+      // Filter per kolom
+      const filterEntries = Object.entries(state.filters).filter(([_, v]) => v && String(v).trim());
+      if (filterEntries.length) {
+        filtered = filtered.filter(r => {
+          for (const [header, val] of filterEntries) {
+            const cell = String(r.data?.[header] ?? '').toLowerCase();
+            if (!cell.includes(String(val).toLowerCase())) return false;
+          }
+          return true;
+        });
+      }
+
+      // Sort
+      if (state.sort) {
+        const h = state.sort;
+        const dir = state.direction === 'asc' ? 1 : -1;
+        filtered = filtered.slice().sort((a, b) => {
+          const av = String(a.data?.[h] ?? '').toLowerCase();
+          const bv = String(b.data?.[h] ?? '').toLowerCase();
+          return av.localeCompare(bv, 'id') * dir;
+        });
+      }
+
+      const total = filtered.length;
+      const pages = Math.max(1, Math.ceil(total / state.pageSize));
+      if (state.page > pages) state.page = pages;
+      const start = (state.page - 1) * state.pageSize;
+      const rows = filtered.slice(start, start + state.pageSize);
+
+      state.rows = rows;
+      state.total = total;
+      state.datasetTotal = all.length;
+
+      const selectedDataset = state.datasets.find(item => item.id === state.selectedDatasetId);
+      $('datasetUpdated').textContent = selectedDataset?.updated_at ? `Terakhir diperbarui ${new Date(selectedDataset.updated_at).toLocaleString('id-ID')}` : 'Database dipilih';
+
+      // Update UI langsung
+      $('totalCount').textContent = fmt.format(state.datasetTotal);
+      $('resultCount').textContent = fmt.format(total);
+      $('columnCount').textContent = fmt.format(state.headers.length);
+      $('pageCount').textContent = `${state.page} / ${pages}`;
+      $('tableSummary').textContent = `${fmt.format(total)} hasil ditemukan.`;
+      $('sortSummary').textContent = state.sort ? `Urut: ${state.sort} (${state.direction === 'asc' ? 'A–Z' : 'Z–A'})` : 'Klik judul kolom untuk mengurutkan.';
+      $('exportPageBtn').disabled = !rows.length;
+      $('pageInfo').textContent = total ? `Menampilkan ${fmt.format(start+1)}–${fmt.format(start+rows.length)} dari ${fmt.format(total)} hasil` : 'Menampilkan 0 data';
+      $('prevPage').disabled = state.page <= 1 || !total;
+      $('nextPage').disabled = state.page >= pages || !total;
+
+      renderTable();
+      renderPagination();
     }
 
     function renderSearch(pagesOverride = null) {
@@ -329,9 +487,6 @@
       $('emptyTitle').textContent = 'Data tidak ditemukan';
       $('emptyDescription').textContent = 'Coba kata kunci atau filter lain.';
 
-      // === FIX BUG FOKUS INPUT & LAG ===
-      // Kita cuma bikin ulang elemen THEAD (judul & kotak filter) 
-      // kalau kolom databasenya bener-bener ganti.
       const currentHeadersString = JSON.stringify(state.headers);
       const headersChanged = renderedHeadersKey !== currentHeadersString;
 
@@ -339,7 +494,6 @@
         renderedHeadersKey = currentHeadersString;
         thead.replaceChildren();
         
-        // Bikin Judul Kolom
         const headRow = document.createElement('tr');
         const numberHeader = document.createElement('th'); numberHeader.textContent = '#'; headRow.appendChild(numberHeader);
         state.headers.forEach(header => {
@@ -348,13 +502,14 @@
           th.addEventListener('click', () => {
             if (state.sort === header) state.direction = state.direction === 'asc' ? 'desc' : 'asc';
             else { state.sort = header; state.direction = 'asc'; }
-            loadRows(true);
+            state.page = 1;
+            if (state.cachedRecords !== null) applyClientSearch();
+            else loadRows(true);
           });
           headRow.appendChild(th);
         });
         thead.appendChild(headRow);
 
-        // Bikin Baris Input Filter
         const filterRow = document.createElement('tr'); filterRow.className = 'filter-row';
         filterRow.appendChild(document.createElement('th'));
         state.headers.forEach(header => {
@@ -369,8 +524,6 @@
         });
         thead.appendChild(filterRow);
       } else {
-        // Kalau header sama (cuma update data), cuma update panah sortingnya aja
-        // Ini yang bikin input ga kerender ulang & fokus ga ilang!
         const headRow = thead.querySelector('tr:first-child');
         if (headRow) {
            const ths = headRow.querySelectorAll('th');
@@ -387,7 +540,6 @@
       $('filterToggle').classList.toggle('active', state.showFilters);
       $('filterToggle').textContent = state.showFilters ? '☷ Sembunyikan Filter' : '☷ Tampilkan Filter';
 
-      // Render Isi Tabel (Bebas dihapus/dibuat ulang tanpa ngaruh ke kotak input)
       const fragment = document.createDocumentFragment();
       state.rows.forEach((record, index) => {
         const tr = document.createElement('tr');
@@ -401,19 +553,30 @@
       tbody.replaceChildren(fragment);
     }
 
+    // === SCHEDULER: SEKARANG INSTAN ===
     function scheduleSearch() {
       clearTimeout(state.searchTimer);
-      // Turunin debounce jadi 150ms biar respon berasa instan kaya DB Browser
-      state.searchTimer = setTimeout(() => loadRows(true), 150);
+      if (state.cachedRecords !== null) {
+        // Mode instan: langsung filter di browser (0ms)
+        state.page = 1;
+        applyClientSearch();
+      } else {
+        // Fallback: server-side, fire immediately (0ms debounce)
+        state.searchTimer = setTimeout(() => loadRows(true), 0);
+      }
     }
 
     function renderPagination() {
-      const pages = Math.ceil(state.total / state.pageSize); const holder = $('pageNumbers'); holder.replaceChildren();
+      const pages = Math.ceil(state.total / state.pageSize) || 1; const holder = $('pageNumbers'); holder.replaceChildren();
       const list = [...new Set([1, pages, state.page-1, state.page, state.page+1])].filter(n => n>=1 && n<=pages).sort((a,b)=>a-b);
       let last = 0;
       list.forEach(n => {
         if (last && n-last>1) { const dots=document.createElement('span'); dots.textContent='…'; dots.style.padding='0 4px'; holder.appendChild(dots); }
-        const btn=document.createElement('button'); btn.className=`page-btn${n===state.page?' active':''}`; btn.type='button'; btn.textContent=String(n); btn.addEventListener('click',()=>{state.page=n;loadRows();}); holder.appendChild(btn); last=n;
+        const btn=document.createElement('button'); btn.className=`page-btn${n===state.page?' active':''}`; btn.type='button'; btn.textContent=String(n); btn.addEventListener('click',()=>{
+          state.page=n;
+          if (state.cachedRecords !== null) applyClientSearch();
+          else loadRows();
+        }); holder.appendChild(btn); last=n;
       });
     }
 
@@ -616,7 +779,6 @@
       }
     }
 
-
     async function deleteDraft(id) {
       if(!window.confirm('Hapus sesi import yang belum selesai? Database utama belum berubah.')) return;
       try { await request(`/api/imports/${id}`,{method:'DELETE'}); if(state.importId===id) resetImportForm(); await loadHistory(); await loadDatasets(state.selectedDatasetId); }
@@ -640,17 +802,44 @@
     }
 
     document.querySelectorAll('.tab').forEach(tab=>tab.addEventListener('click',()=>setPage(tab.dataset.view)));
-    $('datasetSelect').addEventListener('change',async event=>{state.selectedDatasetId=event.target.value;state.query='';state.filters={};state.sort='';$('globalSearch').value='';await loadRows(true);});
+    $('datasetSelect').addEventListener('change',async event=>{
+      state.selectedDatasetId=event.target.value;
+      state.query='';state.filters={};state.sort='';
+      $('globalSearch').value='';
+      renderedHeadersKey = ''; // reset biar header dirender ulang
+      if (state.cacheDatasetId !== state.selectedDatasetId) {
+        state.cachedRecords = null;
+        state.cacheDatasetId = state.selectedDatasetId;
+        setInstantBadge('hidden');
+      }
+      await loadRows(true);
+      loadFullCache(state.selectedDatasetId);
+    });
     $('globalSearch').addEventListener('input',event=>{state.query=event.target.value;state.page=1;scheduleSearch();});
-    $('pageSize').addEventListener('change',event=>{state.pageSize=Number(event.target.value)||50;loadRows(true);});
+    $('pageSize').addEventListener('change',event=>{
+      state.pageSize=Number(event.target.value)||50;
+      state.page=1;
+      if (state.cachedRecords !== null) applyClientSearch();
+      else loadRows(true);
+    });
     $('filterToggle').addEventListener('click',()=>{
       state.showFilters=!state.showFilters;
       const row=$('tableHeader').querySelector('.filter-row');
       if(row) row.classList.toggle('hidden',!state.showFilters);
       $('filterToggle').textContent=state.showFilters?'☷ Sembunyikan Filter':'☷ Tampilkan Filter';
     });
-    $('prevPage').addEventListener('click',()=>{if(state.page>1){state.page--;loadRows();}});
-    $('nextPage').addEventListener('click',()=>{state.page++;loadRows();});
+    $('prevPage').addEventListener('click',()=>{
+      if(state.page>1){
+        state.page--;
+        if (state.cachedRecords !== null) applyClientSearch();
+        else loadRows();
+      }
+    });
+    $('nextPage').addEventListener('click',()=>{
+      state.page++;
+      if (state.cachedRecords !== null) applyClientSearch();
+      else loadRows();
+    });
     $('exportPageBtn').addEventListener('click',exportCurrentPage);
     $('targetDataset').addEventListener('change',event=>$('newDatasetWrap').classList.toggle('hidden',event.target.value!=='__new__'));
     $('sheetSelect').addEventListener('change',event=>{try{buildParsedSheet(event.target.value);setImportStatus(`Sheet ${event.target.value} siap diproses.`,'success');}catch(error){setImportStatus(error.message,'error');}});
