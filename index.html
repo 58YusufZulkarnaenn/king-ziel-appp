@@ -21,7 +21,7 @@
     .topbar-inner{max-width:1700px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:20px}
     .brand{display:flex;align-items:center;gap:13px}.brand-mark{width:44px;height:44px;border-radius:13px;background:rgba(255,255,255,.14);display:grid;place-items:center;border:1px solid rgba(255,255,255,.18);font-size:23px}.brand h1{margin:0;font-size:21px;letter-spacing:-.45px}.brand p{margin:4px 0 0;color:#c8d8ed;font-size:11px;letter-spacing:.35px}.header-right{display:flex;align-items:center;gap:10px}.connection-chip{border:1px solid rgba(255,255,255,.23);background:rgba(255,255,255,.1);padding:8px 11px;border-radius:99px;font-size:10px;font-weight:750;letter-spacing:.4px;color:#e9f2ff}
     .container{max-width:1700px;margin:auto;padding:25px clamp(13px,3vw,42px) 42px}
-    .intro{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;margin-bottom:17px;flex-wrap:wrap}.intro h2{margin:0;font-size:22px;letter-spacing:-.5px}.intro p{margin:6px 0 0;color:var(--muted);font-size:12px}.tabs{display:flex;gap:6px;padding:5px;background:#e9eef6;border-radius:12px;width:max-content;max-width:100%;overflow:auto}.tab{border:0;background:transparent;color:#52617a;padding:10px 14px;border-radius:9px;font-size:11px;font-weight:750;white-space:nowrap}.tab.active{background:#fff;color:var(--blue);box-shadow:0 2px 8px rgba(30,50,80,.08)}
+    .intro{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:17px;flex-wrap:wrap}.intro h2{margin:0;font-size:22px;letter-spacing:-.5px}.tabs{display:flex;gap:6px;padding:5px;background:#e9eef6;border-radius:12px;width:max-content;max-width:100%;overflow:auto}.tab{border:0;background:transparent;color:#52617a;padding:10px 14px;border-radius:9px;font-size:11px;font-weight:750;white-space:nowrap}.tab.active{background:#fff;color:var(--blue);box-shadow:0 2px 8px rgba(30,50,80,.08)}
     .panel{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow)}
     .toolbar{padding:16px 18px;display:flex;justify-content:space-between;align-items:center;gap:12px;border-bottom:1px solid var(--border);flex-wrap:wrap}.toolbar-left,.toolbar-right{display:flex;align-items:center;gap:9px;flex-wrap:wrap}.field-label{display:block;color:#56647b;font-size:10px;font-weight:800;letter-spacing:.45px;text-transform:uppercase;margin-bottom:6px}.field-control{border:1px solid var(--border);background:#fbfcfe;color:var(--text);border-radius:9px;padding:10px 11px;font-size:12px;outline:none;min-width:190px;max-width:100%}.field-control:focus,.search-input:focus,.column-filter:focus{border-color:#91b1ff;box-shadow:0 0 0 3px rgba(37,99,235,.1)}
     .btn{border:0;border-radius:9px;padding:10px 14px;font-size:11px;font-weight:800;transition:.15s ease}.btn-primary{background:var(--blue);color:#fff}.btn-primary:hover:not(:disabled){background:#194fc9}.btn-secondary{background:#edf2f8;color:#3d4c65}.btn-secondary:hover:not(:disabled){background:#e1e9f3}.btn-danger{background:var(--red-soft);color:var(--red)}.btn-green{background:var(--green);color:white}.btn-outline{background:white;border:1px solid var(--border);color:#4d5d76}
@@ -29,7 +29,7 @@
     .search-wrap{position:relative;width:min(100%,460px)}.search-wrap span{position:absolute;left:13px;top:50%;transform:translateY(-50%);font-size:17px;color:#8a98ad}.search-input{width:100%;border:1px solid var(--border);background:#fbfcfe;border-radius:10px;padding:11px 12px 11px 38px;outline:none;font-size:12px}
     .table-meta{padding:11px 17px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;color:var(--muted);font-size:10px;border-bottom:1px solid var(--border)}.table-scroll{width:100%;overflow:auto;max-height:65vh;min-height:170px}table{width:100%;border-collapse:separate;border-spacing:0;white-space:nowrap;font-size:11px}th,td{padding:11px 13px;border-bottom:1px solid #edf0f5;text-align:left;max-width:340px}thead th{position:sticky;top:0;z-index:3;background:#f7f9fc;color:#40516c;font-weight:800;border-bottom:1px solid #dfe6f0}th.sortable{cursor:pointer;user-select:none}th.sortable:hover{color:var(--blue);background:#eef4ff}.filter-row th{top:40px;z-index:2;background:#fff;padding:7px 8px}.column-filter{min-width:100px;width:100%;border:1px solid #e1e7f0;border-radius:7px;padding:7px 8px;font-size:10px;outline:none}tbody td{color:#344158;overflow:hidden;text-overflow:ellipsis}tbody tr:hover td{background:#f7faff}
     .empty-state{text-align:center;padding:52px 18px;color:var(--muted)}.empty-state strong{display:block;color:#35445e;font-size:14px}.empty-state p{margin:6px 0 0;font-size:11px}.pagination{padding:13px 17px;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;border-top:1px solid var(--border)}.page-info{font-size:10px;color:var(--muted)}.page-buttons{display:flex;align-items:center;gap:5px}.page-btn{min-width:32px;height:31px;padding:0 8px;border:1px solid var(--border);background:white;border-radius:8px;color:#4c5a72;font-size:10px}.page-btn.active{background:var(--blue);color:white;border-color:var(--blue)}.page-btn:disabled{opacity:.4;cursor:not-allowed}
-    .notice{margin-top:15px;padding:12px 14px;border-radius:11px;background:var(--amber-soft);border:1px solid #f2e1ba;color:#75571e;font-size:10px;line-height:1.65}.notice strong{color:#63470f}.status-line{display:flex;align-items:center;gap:8px;min-height:20px;margin:12px 2px 0;color:var(--muted);font-size:11px}.status-dot{width:7px;height:7px;border-radius:50%;background:#9aa8bc;flex:0 0 auto}.status-line.success{color:var(--green)}.status-line.success .status-dot{background:var(--green)}.status-line.error{color:var(--red)}.status-line.error .status-dot{background:var(--red)}
+    .status-line{display:flex;align-items:center;gap:8px;min-height:20px;margin:12px 2px 0;color:var(--muted);font-size:11px}.status-dot{width:7px;height:7px;border-radius:50%;background:#9aa8bc;flex:0 0 auto}.status-line.success{color:var(--green)}.status-line.success .status-dot{background:var(--green)}.status-line.error{color:var(--red)}.status-line.error .status-dot{background:var(--red)}
     .upload-layout{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(270px,.65fr);gap:15px}.section-card{padding:19px}.section-title{margin:0;font-size:15px;letter-spacing:-.2px}.section-subtitle{margin:5px 0 16px;color:var(--muted);font-size:11px;line-height:1.6}
     .dropzone{border:1.5px dashed #b9c8df;border-radius:13px;background:#f8faff;padding:22px;display:flex;align-items:center;gap:14px;min-height:105px;transition:.15s}.dropzone.dragover{background:var(--blue-soft);border-color:var(--blue)}.drop-icon{width:46px;height:46px;flex:0 0 auto;display:grid;place-items:center;border-radius:12px;background:var(--blue-soft);color:var(--blue);font-size:22px}.dropzone strong{display:block;font-size:12px}.dropzone span{display:block;color:var(--muted);font-size:10px;margin-top:5px;line-height:1.6}.file-meta{font-size:10px;color:var(--muted);margin-top:9px;overflow-wrap:anywhere}
     .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}.form-field.full{grid-column:1/-1}.form-field label{display:block;font-size:10px;font-weight:800;color:#59667c;margin-bottom:6px}.form-field input,.form-field select{width:100%;border:1px solid var(--border);border-radius:9px;background:#fbfcfe;padding:10px;font-size:11px;outline:none;color:var(--text)}.form-field select[multiple]{min-height:135px;line-height:1.8}.help-text{font-size:10px;color:var(--muted);line-height:1.6;margin-top:6px}
@@ -60,8 +60,7 @@
         <button class="tab" data-view="history" type="button">◷ Riwayat</button>
       </nav>
       <div style="text-align:right;">
-         <h2 id="pageHeading">Pencarian Data</h2>
-         <p id="pageDescription">Cari data dari database pusat kantor tanpa perlu scroll.</p>
+         <h2 id="pageHeading" style="margin:0;">Pencarian Data</h2>
       </div>
     </section>
 
@@ -91,8 +90,6 @@
         <div class="panel stat"><div class="stat-label">Jumlah Kolom</div><div class="stat-value" id="columnCount">0</div><div class="stat-note">Kolom dari master data</div></div>
         <div class="panel stat"><div class="stat-label">Halaman</div><div class="stat-value" id="pageCount">0 / 0</div><div class="stat-note">Navigasi hasil pencarian</div></div>
       </section>
-
-      <div class="notice"><strong>Data terpusat:</strong> hasil pencarian diambil dari database backend, bukan penyimpanan browser. Semua rekan kantor menggunakan sumber data yang sama. Jangan memasukkan data pribadi customer ke repository GitHub atau file publik.</div>
     </section>
 
     <section id="view-update" class="hidden">
@@ -171,14 +168,71 @@
       page: 1, pageSize: 50, query: '', filters: {}, sort: '', direction: 'asc',
       showFilters: true, parsed: null, importId: '', preview: null, importHeaderMap: {}, accessKey: '',
       authRequired: false, busy: false, searchTimer: null, importDatasetId: '',
-      // === STATE BARU UNTUK CLIENT-SIDE CACHE ===
-      cachedRecords: null,     // null = belum siap, Array = siap dipakai
-      cacheLoading: false,
-      cacheDatasetId: ''
+      cachedRecords: null, cacheLoading: false, cacheDatasetId: ''
     };
 
     let renderedHeadersKey = ''; 
     let searchAbortController = null;
+
+    // === INDEXEDDB SETUP UNTUK CACHE PERMANEN ===
+    const DB_NAME = 'KingZielAppDB';
+    const STORE_NAME = 'dataset_cache';
+    let dbInstance = null;
+
+    function openDB() {
+      return new Promise((resolve, reject) => {
+        if (dbInstance) return resolve(dbInstance);
+        const request = indexedDB.open(DB_NAME, 1);
+        request.onupgradeneeded = e => {
+          const db = e.target.result;
+          if (!db.objectStoreNames.contains(STORE_NAME)) {
+            db.createObjectStore(STORE_NAME, { keyPath: 'id' });
+          }
+        };
+        request.onsuccess = e => {
+          dbInstance = e.target.result;
+          resolve(dbInstance);
+        };
+        request.onerror = e => reject(e.target.error);
+      });
+    }
+
+    async function getCache(datasetId) {
+      try {
+        const db = await openDB();
+        return new Promise((resolve) => {
+          const tx = db.transaction(STORE_NAME, 'readonly');
+          const req = tx.objectStore(STORE_NAME).get(datasetId);
+          req.onsuccess = () => resolve(req.result);
+          req.onerror = () => resolve(null);
+        });
+      } catch { return null; }
+    }
+
+    async function saveCache(datasetId, updatedAt, records) {
+      try {
+        const db = await openDB();
+        return new Promise((resolve) => {
+          const tx = db.transaction(STORE_NAME, 'readwrite');
+          tx.objectStore(STORE_NAME).put({ id: datasetId, updatedAt, records });
+          tx.oncomplete = () => resolve();
+          tx.onerror = () => resolve();
+        });
+      } catch { /* ignore */ }
+    }
+
+    async function clearCache(datasetId) {
+      try {
+        const db = await openDB();
+        return new Promise((resolve) => {
+          const tx = db.transaction(STORE_NAME, 'readwrite');
+          tx.objectStore(STORE_NAME).delete(datasetId);
+          tx.oncomplete = () => resolve();
+          tx.onerror = () => resolve();
+        });
+      } catch { /* ignore */ }
+    }
+    // =============================================
 
     async function request(path, options = {}) {
       const headers = new Headers(options.headers || {});
@@ -199,7 +253,6 @@
       return payload;
     }
 
-    // === UI BADGE UNTUK MODE INSTAN ===
     function setInstantBadge(status) {
       const badge = $('instantBadge');
       const text = $('instantText');
@@ -208,7 +261,6 @@
         badge.classList.add('loading');
         text.textContent = 'Menyiapkan Cache…';
         badge.querySelector('.bolt').textContent = '';
-        // Ganti ikon jadi spinner
         let spinner = badge.querySelector('.dot-loader');
         if (!spinner) {
           spinner = document.createElement('span');
@@ -218,7 +270,6 @@
         badge.querySelector('.bolt').classList.add('hidden');
       } else if (status === 'ready') {
         badge.classList.remove('hidden','loading');
-        badge.classList.remove('loading');
         const spinner = badge.querySelector('.dot-loader');
         if (spinner) spinner.remove();
         const bolt = badge.querySelector('.bolt');
@@ -239,12 +290,11 @@
       document.querySelectorAll('.tab').forEach(tab => tab.classList.toggle('active', tab.dataset.view === view));
       ['search','update','history'].forEach(name => $(`view-${name}`).classList.toggle('hidden', name !== view));
       const headings = {
-        search: ['Pencarian Data', 'Cari data dari database pusat kantor tanpa perlu scroll.'],
-        update: ['Update Database', 'Upload master Excel terbaru, periksa hasil analisis, lalu terapkan perubahan ke SQL.'],
-        history: ['Riwayat Update', 'Pantau proses import sebelumnya dan batalkan import yang masih aman untuk di-rollback.']
+        search: 'Pencarian Data',
+        update: 'Update Database',
+        history: 'Riwayat Update'
       };
-      $('pageHeading').textContent = headings[view][0];
-      $('pageDescription').textContent = headings[view][1];
+      $('pageHeading').textContent = headings[view];
       if (view === 'history') loadHistory();
     }
 
@@ -278,16 +328,11 @@
       const choose = preferredId || state.selectedDatasetId;
       const selected = state.datasets.find(item => item.id === choose) || state.datasets[0] || null;
       state.selectedDatasetId = selected?.id || '';
-      // Reset cache saat ganti dataset
-      if (state.cacheDatasetId !== state.selectedDatasetId) {
-        state.cachedRecords = null;
-        state.cacheDatasetId = state.selectedDatasetId;
-        setInstantBadge('hidden');
-      }
+      
       renderDatasetSelectors();
       if (selected) {
-        await loadRows(true);
-        loadFullCache(state.selectedDatasetId); // background cache
+        await loadRows(true); // Render first page cepat (server-side)
+        checkAndLoadCache(selected); // Cek cache background
       } else {
         state.headers = []; state.rows = []; state.total = 0; state.datasetTotal = 0;
         $('globalSearch').disabled = true; $('pageSize').disabled = true; $('filterToggle').disabled = true;
@@ -295,9 +340,29 @@
       }
     }
 
-    // === LOAD SEMUA DATA KE CACHE (BACKGROUND) ===
-    async function loadFullCache(datasetId) {
-      if (!datasetId) return;
+    // === FUNGSI BARU: CEK INDEXEDDB DULU SEBELUM DOWNLOAD ===
+    async function checkAndLoadCache(dataset) {
+      if (!dataset) return;
+      const datasetId = dataset.id;
+      const updatedAt = dataset.updated_at;
+
+      if (state.cacheDatasetId !== datasetId) {
+        state.cachedRecords = null;
+        state.cacheDatasetId = datasetId;
+        setInstantBadge('hidden');
+      }
+
+      // 1. Coba baca dari IndexedDB
+      const cached = await getCache(datasetId);
+      if (cached && cached.updatedAt === updatedAt) {
+        // Cache valid dan masih fresh! Langsung pakai.
+        state.cachedRecords = cached.records;
+        setInstantBadge('ready');
+        applyClientSearch();
+        return; // Selesai, ga perlu download!
+      }
+
+      // 2. Kalau ga ada / expired, download dari API
       state.cachedRecords = null;
       state.cacheLoading = true;
       setInstantBadge('loading');
@@ -306,7 +371,7 @@
         let page = 1;
         const size = 1000;
         while (true) {
-          if (state.selectedDatasetId !== datasetId) return; // dataset berganti, batal
+          if (state.selectedDatasetId !== datasetId) return; 
           const params = new URLSearchParams({
             datasetId, page: String(page), pageSize: String(size),
             q: '', sort: '', direction: 'asc', filters: '{}'
@@ -320,7 +385,10 @@
           state.cachedRecords = all;
           state.cacheLoading = false;
           setInstantBadge('ready');
-          // Refresh tampilan pakai mode instan
+          
+          // Simpan ke IndexedDB biar next refresh instan
+          await saveCache(datasetId, updatedAt, all);
+          
           applyClientSearch();
         }
       } catch (e) {
@@ -351,13 +419,11 @@
       if (!state.selectedDatasetId) return;
       if (resetPage) state.page = 1;
 
-      // === JIKA CACHE SUDAH SIAP, PAKAI CLIENT-SIDE (INSTAN) ===
       if (state.cachedRecords !== null) {
         applyClientSearch();
         return;
       }
 
-      // Fallback: server-side (kalau cache belum siap)
       const params = new URLSearchParams({
         datasetId: state.selectedDatasetId, page: String(state.page), pageSize: String(state.pageSize),
         q: state.query, sort: state.sort, direction: state.direction, filters: JSON.stringify(state.filters)
@@ -376,18 +442,16 @@
         $('datasetUpdated').textContent = selectedDataset?.updated_at ? `Terakhir diperbarui ${new Date(selectedDataset.updated_at).toLocaleString('id-ID')}` : 'Database dipilih';
         renderSearch(result.pages || 0);
       } catch (error) {
-        if (error.name === 'AbortError') return; // request lama dibatalkan
+        if (error.name === 'AbortError') return;
         showFatal(error.message);
       }
     }
 
-    // === FUNGSI INTI: FILTER & PAGINATION DI BROWSER (INSTAN) ===
     function applyClientSearch() {
       const all = state.cachedRecords || [];
       const q = state.query.toLowerCase().trim();
       let filtered = all;
 
-      // Filter global (search bar)
       if (q) {
         filtered = filtered.filter(r => {
           const data = r.data || {};
@@ -398,7 +462,6 @@
         });
       }
 
-      // Filter per kolom
       const filterEntries = Object.entries(state.filters).filter(([_, v]) => v && String(v).trim());
       if (filterEntries.length) {
         filtered = filtered.filter(r => {
@@ -410,7 +473,6 @@
         });
       }
 
-      // Sort
       if (state.sort) {
         const h = state.sort;
         const dir = state.direction === 'asc' ? 1 : -1;
@@ -434,7 +496,6 @@
       const selectedDataset = state.datasets.find(item => item.id === state.selectedDatasetId);
       $('datasetUpdated').textContent = selectedDataset?.updated_at ? `Terakhir diperbarui ${new Date(selectedDataset.updated_at).toLocaleString('id-ID')}` : 'Database dipilih';
 
-      // Update UI langsung
       $('totalCount').textContent = fmt.format(state.datasetTotal);
       $('resultCount').textContent = fmt.format(total);
       $('columnCount').textContent = fmt.format(state.headers.length);
@@ -553,15 +614,12 @@
       tbody.replaceChildren(fragment);
     }
 
-    // === SCHEDULER: SEKARANG INSTAN ===
     function scheduleSearch() {
       clearTimeout(state.searchTimer);
       if (state.cachedRecords !== null) {
-        // Mode instan: langsung filter di browser (0ms)
         state.page = 1;
         applyClientSearch();
       } else {
-        // Fallback: server-side, fire immediately (0ms debounce)
         state.searchTimer = setTimeout(() => loadRows(true), 0);
       }
     }
@@ -732,8 +790,13 @@
         setImportStatus(`Selesai! ${fmt.format(stats.insertedRows)} data ditambahkan, ${fmt.format(stats.updatedRows)} diperbarui, ${fmt.format(stats.duplicateRows)} duplikat dilewati.`, 'success');
         $('previewSubtitle').textContent='Import selesai dan transaksi database berhasil disimpan.';
         $('commitBtn').textContent='Update Berhasil'; $('commitBtn').disabled=true;
+        
+        // HAPUS CACHE LAMA KARENA ADA DATA BARU
+        const targetDatasetId = state.importDatasetId || state.selectedDatasetId;
+        await clearCache(targetDatasetId);
+        
         state.importId=''; state.preview=null; $('cancelImportBtn').disabled=true;
-        await loadDatasets(state.importDatasetId || state.selectedDatasetId);
+        await loadDatasets(targetDatasetId);
         state.importDatasetId = '';
         setTimeout(()=>setPage('search'),900);
       } catch(error) { setImportStatus(error.message,'error'); $('commitBtn').disabled=!state.preview?.canCommit; }
@@ -806,14 +869,16 @@
       state.selectedDatasetId=event.target.value;
       state.query='';state.filters={};state.sort='';
       $('globalSearch').value='';
-      renderedHeadersKey = ''; // reset biar header dirender ulang
-      if (state.cacheDatasetId !== state.selectedDatasetId) {
-        state.cachedRecords = null;
-        state.cacheDatasetId = state.selectedDatasetId;
-        setInstantBadge('hidden');
+      renderedHeadersKey = ''; 
+      
+      const selected = state.datasets.find(item => item.id === state.selectedDatasetId);
+      if (selected) {
+         // Reset state cache
+         state.cachedRecords = null;
+         state.cacheDatasetId = '';
+         await loadRows(true);
+         checkAndLoadCache(selected);
       }
-      await loadRows(true);
-      loadFullCache(state.selectedDatasetId);
     });
     $('globalSearch').addEventListener('input',event=>{state.query=event.target.value;state.page=1;scheduleSearch();});
     $('pageSize').addEventListener('change',event=>{
