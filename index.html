@@ -1,0 +1,585 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#102b50">
+  <meta name="description" content="KING ZIEL APP — pencarian dan pengelolaan database internal.">
+  <title>KING ZIEL APP | Internal Data Hub</title>
+  <script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"></script>
+  <style>
+    :root{--navy:#102b50;--navy2:#1c4778;--blue:#2563eb;--blue-soft:#edf3ff;--bg:#f3f6fb;--surface:#fff;--text:#182338;--muted:#718096;--border:#e3e9f2;--green:#128455;--green-soft:#e9f8f0;--red:#d64545;--red-soft:#fff0f0;--amber:#a56a12;--amber-soft:#fff7e8;--shadow:0 10px 30px rgba(22,44,78,.06);--radius:16px}
+    *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,"Segoe UI",system-ui,-apple-system,sans-serif}button,input,select{font:inherit}button{cursor:pointer}button:disabled{opacity:.45;cursor:not-allowed}.topbar{background:linear-gradient(115deg,var(--navy),var(--navy2));color:#fff;padding:20px clamp(16px,4vw,52px);box-shadow:0 4px 18px rgba(16,43,80,.16)}.topbar-inner{max-width:1700px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{display:flex;align-items:center;gap:13px}.brand-mark{width:44px;height:44px;border-radius:13px;background:rgba(255,255,255,.14);display:grid;place-items:center;border:1px solid rgba(255,255,255,.18);font-size:23px}.brand h1{margin:0;font-size:21px;letter-spacing:-.45px}.brand p{margin:4px 0 0;color:#c8d8ed;font-size:11px;letter-spacing:.35px}.header-right{display:flex;align-items:center;gap:10px}.connection-chip{border:1px solid rgba(255,255,255,.23);background:rgba(255,255,255,.1);padding:8px 11px;border-radius:99px;font-size:10px;font-weight:750;letter-spacing:.4px;color:#e9f2ff}.container{max-width:1700px;margin:auto;padding:25px clamp(13px,3vw,42px) 42px}.intro{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;margin-bottom:17px;flex-wrap:wrap}.intro h2{margin:0;font-size:22px;letter-spacing:-.5px}.intro p{margin:6px 0 0;color:var(--muted);font-size:12px}.tabs{display:flex;gap:6px;padding:5px;background:#e9eef6;border-radius:12px;width:max-content;max-width:100%;overflow:auto}.tab{border:0;background:transparent;color:#52617a;padding:10px 14px;border-radius:9px;font-size:11px;font-weight:750;white-space:nowrap}.tab.active{background:#fff;color:var(--blue);box-shadow:0 2px 8px rgba(30,50,80,.08)}.panel{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow)}.toolbar{padding:16px 18px;display:flex;justify-content:space-between;align-items:center;gap:12px;border-bottom:1px solid var(--border);flex-wrap:wrap}.toolbar-left,.toolbar-right{display:flex;align-items:center;gap:9px;flex-wrap:wrap}.field-label{display:block;color:#56647b;font-size:10px;font-weight:800;letter-spacing:.45px;text-transform:uppercase;margin-bottom:6px}.field-control{border:1px solid var(--border);background:#fbfcfe;color:var(--text);border-radius:9px;padding:10px 11px;font-size:12px;outline:none;min-width:190px;max-width:100%}.field-control:focus,.search-input:focus,.column-filter:focus{border-color:#91b1ff;box-shadow:0 0 0 3px rgba(37,99,235,.1)}.btn{border:0;border-radius:9px;padding:10px 14px;font-size:11px;font-weight:800;transition:.15s ease}.btn-primary{background:var(--blue);color:#fff}.btn-primary:hover:not(:disabled){background:#194fc9}.btn-secondary{background:#edf2f8;color:#3d4c65}.btn-secondary:hover:not(:disabled){background:#e1e9f3}.btn-danger{background:var(--red-soft);color:var(--red)}.btn-green{background:var(--green);color:white}.btn-outline{background:white;border:1px solid var(--border);color:#4d5d76}.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:15px 0}.stat{padding:16px 18px}.stat-label{color:var(--muted);font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.5px}.stat-value{font-size:24px;font-weight:800;letter-spacing:-.7px;margin-top:7px}.stat-note{font-size:10px;color:#97a1b1;margin-top:3px}.search-wrap{position:relative;width:min(100%,460px)}.search-wrap span{position:absolute;left:13px;top:50%;transform:translateY(-50%);font-size:17px;color:#8a98ad}.search-input{width:100%;border:1px solid var(--border);background:#fbfcfe;border-radius:10px;padding:11px 12px 11px 38px;outline:none;font-size:12px}.table-meta{padding:11px 17px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;color:var(--muted);font-size:10px;border-bottom:1px solid var(--border)}.table-scroll{width:100%;overflow:auto;max-height:60vh;min-height:170px}table{width:100%;border-collapse:separate;border-spacing:0;white-space:nowrap;font-size:11px}th,td{padding:11px 13px;border-bottom:1px solid #edf0f5;text-align:left;max-width:340px}thead th{position:sticky;top:0;z-index:3;background:#f7f9fc;color:#40516c;font-weight:800;border-bottom:1px solid #dfe6f0}th.sortable{cursor:pointer;user-select:none}th.sortable:hover{color:var(--blue);background:#eef4ff}.filter-row th{top:40px;z-index:2;background:#fff;padding:7px 8px}.column-filter{min-width:100px;width:100%;border:1px solid #e1e7f0;border-radius:7px;padding:7px 8px;font-size:10px;outline:none}.sort-indicator{color:var(--blue);margin-left:5px}tbody td{color:#344158;overflow:hidden;text-overflow:ellipsis}tbody tr:hover td{background:#f7faff}.empty-state{text-align:center;padding:52px 18px;color:var(--muted)}.empty-state strong{display:block;color:#35445e;font-size:14px}.empty-state p{margin:6px 0 0;font-size:11px}.pagination{padding:13px 17px;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;border-top:1px solid var(--border)}.page-info{font-size:10px;color:var(--muted)}.page-buttons{display:flex;align-items:center;gap:5px}.page-btn{min-width:32px;height:31px;padding:0 8px;border:1px solid var(--border);background:white;border-radius:8px;color:#4c5a72;font-size:10px}.page-btn.active{background:var(--blue);color:white;border-color:var(--blue)}.page-btn:disabled{opacity:.4;cursor:not-allowed}.notice{margin-top:15px;padding:12px 14px;border-radius:11px;background:var(--amber-soft);border:1px solid #f2e1ba;color:#75571e;font-size:10px;line-height:1.65}.notice strong{color:#63470f}.status-line{display:flex;align-items:center;gap:8px;min-height:20px;margin:12px 2px 0;color:var(--muted);font-size:11px}.status-dot{width:7px;height:7px;border-radius:50%;background:#9aa8bc;flex:0 0 auto}.status-line.success{color:var(--green)}.status-line.success .status-dot{background:var(--green)}.status-line.error{color:var(--red)}.status-line.error .status-dot{background:var(--red)}.upload-layout{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(270px,.65fr);gap:15px}.section-card{padding:19px}.section-title{margin:0;font-size:15px;letter-spacing:-.2px}.section-subtitle{margin:5px 0 16px;color:var(--muted);font-size:11px;line-height:1.6}.dropzone{border:1.5px dashed #b9c8df;border-radius:13px;background:#f8faff;padding:22px;display:flex;align-items:center;gap:14px;min-height:105px;transition:.15s}.dropzone.dragover{background:var(--blue-soft);border-color:var(--blue)}.drop-icon{width:46px;height:46px;flex:0 0 auto;display:grid;place-items:center;border-radius:12px;background:var(--blue-soft);color:var(--blue);font-size:22px}.dropzone strong{display:block;font-size:12px}.dropzone span{display:block;color:var(--muted);font-size:10px;margin-top:5px;line-height:1.6}.file-meta{font-size:10px;color:var(--muted);margin-top:9px;overflow-wrap:anywhere}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}.form-field.full{grid-column:1/-1}.form-field label{display:block;font-size:10px;font-weight:800;color:#59667c;margin-bottom:6px}.form-field input,.form-field select{width:100%;border:1px solid var(--border);border-radius:9px;background:#fbfcfe;padding:10px;font-size:11px;outline:none;color:var(--text)}.form-field select[multiple]{min-height:135px;line-height:1.8}.help-text{font-size:10px;color:var(--muted);line-height:1.6;margin-top:6px}.file-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:14px}.progress-wrap{margin-top:16px;display:none}.progress-track{height:9px;background:#eaf0f7;border-radius:20px;overflow:hidden}.progress-bar{height:100%;background:linear-gradient(90deg,#2563eb,#62a0ff);width:0%;transition:width .15s}.progress-caption{display:flex;justify-content:space-between;gap:8px;color:var(--muted);font-size:10px;margin-top:7px}.preview-panel{margin-top:15px;padding:18px;display:none}.preview-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;margin:14px 0}.preview-stat{padding:12px;border:1px solid var(--border);border-radius:11px;background:#fbfcfe}.preview-stat .value{font-size:21px;font-weight:850;margin-top:6px}.preview-stat .label{font-size:9px;color:var(--muted);font-weight:800;text-transform:uppercase;letter-spacing:.3px}.preview-stat.good .value{color:var(--green)}.preview-stat.warn .value{color:var(--amber)}.preview-stat.bad .value{color:var(--red)}.preview-actions{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}.preview-note{padding:10px 12px;border-radius:9px;background:var(--blue-soft);color:#355b9c;font-size:10px;line-height:1.6;margin-bottom:14px}.history-table td{font-size:10px}.status-badge{display:inline-flex;align-items:center;padding:5px 8px;border-radius:30px;font-size:9px;font-weight:800;background:#edf2f8;color:#55637a}.status-badge.completed{background:var(--green-soft);color:var(--green)}.status-badge.rolled_back{background:var(--amber-soft);color:var(--amber)}.status-badge.uploading,.status-badge.previewed{background:var(--blue-soft);color:var(--blue)}.hidden{display:none!important}.footer{text-align:center;color:#9aa5b6;font-size:10px;margin-top:22px}.muted{color:var(--muted)}
+    @media(max-width:900px){.upload-layout{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.preview-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media(max-width:560px){.topbar{padding-top:16px;padding-bottom:16px}.brand h1{font-size:18px}.connection-chip{display:none}.container{padding-top:18px}.intro{align-items:flex-start}.tabs{width:100%;justify-content:space-between}.tab{flex:1;padding:10px 8px}.toolbar{padding:13px}.toolbar-left,.toolbar-right{width:100%}.search-wrap{width:100%}.stats{gap:8px}.stat{padding:13px}.stat-value{font-size:21px}.section-card{padding:14px}.form-grid{grid-template-columns:1fr}.preview-actions{align-items:stretch}.preview-actions .btn{flex:1}}
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">⌕</div>
+        <div><h1>KING ZIEL APP</h1><p>INTERNAL DATA MANAGEMENT SYSTEM</p></div>
+      </div>
+      <div class="header-right"><div class="connection-chip" id="connectionChip">● MENGHUBUNGKAN DATABASE</div></div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="intro">
+      <div><h2 id="pageHeading">Pencarian Data</h2><p id="pageDescription">Cari data dari database pusat kantor, tanpa perlu upload ulang setiap kali membuka aplikasi.</p></div>
+      <nav class="tabs" aria-label="Menu aplikasi">
+        <button class="tab active" data-view="search" type="button">⌕ Pencarian</button>
+        <button class="tab" data-view="update" type="button">⇧ Update Database</button>
+        <button class="tab" data-view="history" type="button">◷ Riwayat</button>
+      </nav>
+    </section>
+
+    <section id="view-search">
+      <section class="panel toolbar">
+        <div class="toolbar-left">
+          <div><label class="field-label" for="datasetSelect">Pilih database</label><select class="field-control" id="datasetSelect"><option value="">Belum ada database</option></select></div>
+          <div class="search-wrap"><span aria-hidden="true">⌕</span><input class="search-input" id="globalSearch" type="search" placeholder="Cari nama, nomor kontrak, alamat, atau data apa pun..." autocomplete="off" disabled></div>
+        </div>
+        <div class="toolbar-right">
+          <label class="muted" style="font-size:10px">Baris <select id="pageSize" class="field-control" style="min-width:75px;padding:9px" disabled><option>25</option><option selected>50</option><option>100</option><option>250</option></select></label>
+          <button class="btn btn-secondary" id="exportPageBtn" type="button" disabled>⇩ Export halaman</button>
+        </div>
+      </section>
+      <section class="stats">
+        <div class="panel stat"><div class="stat-label">Total Data</div><div class="stat-value" id="totalCount">0</div><div class="stat-note">Record dalam database</div></div>
+        <div class="panel stat"><div class="stat-label">Hasil Ditemukan</div><div class="stat-value" id="resultCount">0</div><div class="stat-note">Sesuai pencarian dan filter</div></div>
+        <div class="panel stat"><div class="stat-label">Jumlah Kolom</div><div class="stat-value" id="columnCount">0</div><div class="stat-note">Kolom dari master data</div></div>
+        <div class="panel stat"><div class="stat-label">Halaman</div><div class="stat-value" id="pageCount">0 / 0</div><div class="stat-note">Navigasi hasil pencarian</div></div>
+      </section>
+      <section class="panel">
+        <div class="toolbar"><div class="toolbar-left"><strong style="font-size:12px">Data tersimpan</strong><span class="muted" id="datasetUpdated" style="font-size:10px">Database belum dipilih</span></div><div class="toolbar-right"><button class="btn btn-outline" id="filterToggle" type="button" disabled>☷ Sembunyikan Filter</button></div></div>
+        <div class="table-meta"><span id="tableSummary">Belum ada data untuk ditampilkan.</span><span id="sortSummary">Klik judul kolom untuk mengurutkan.</span></div>
+        <div class="table-scroll" id="tableScroll"><table id="dataTable"><thead id="tableHeader"></thead><tbody id="tableBody"></tbody></table><div class="empty-state" id="emptyState"><strong id="emptyTitle">Database masih kosong</strong><p id="emptyDescription">Buka menu Update Database untuk memasukkan file master pertama.</p></div></div>
+        <div class="pagination"><div class="page-info" id="pageInfo">Menampilkan 0 data</div><div class="page-buttons"><button class="page-btn" id="prevPage" type="button" disabled>‹</button><span id="pageNumbers"></span><button class="page-btn" id="nextPage" type="button" disabled>›</button></div></div>
+      </section>
+      <div class="notice"><strong>Data terpusat:</strong> hasil pencarian diambil dari database backend, bukan penyimpanan browser. Semua rekan kantor menggunakan sumber data yang sama. Jangan memasukkan data pribadi customer ke repository GitHub atau file publik.</div>
+    </section>
+
+    <section id="view-update" class="hidden">
+      <div class="upload-layout">
+        <section class="panel section-card">
+          <h3 class="section-title">Update Database dari Excel</h3>
+          <p class="section-subtitle">Pilih database yang mau diperbarui, lalu upload file master terbaru. Sistem akan membaca file dan mengirim isinya ke SQL secara bertahap.</p>
+          <div class="dropzone" id="dropzone" tabindex="0" role="button" aria-label="Pilih atau seret file Excel ke sini">
+            <div class="drop-icon">⇧</div><div><strong>Seret file ke sini atau klik untuk memilih</strong><span>Format .xlsx, .xls, atau .csv. Data diproses per potongan supaya request ke backend tidak terlalu besar.</span></div>
+          </div>
+          <input type="file" id="fileUpload" accept=".xlsx,.xls,.csv" hidden>
+          <div class="file-meta" id="fileMeta">Belum ada file yang dipilih.</div>
+          <div class="form-grid">
+            <div class="form-field full"><label for="targetDataset">Tujuan data</label><select id="targetDataset"><option value="__new__">＋ Buat database / kategori baru</option></select><div class="help-text">Pilih database lama untuk memperbarui isinya, atau buat kategori baru.</div></div>
+            <div class="form-field full hidden" id="newDatasetWrap"><label for="newDatasetName">Nama database baru</label><input id="newDatasetName" type="text" maxlength="100" placeholder="Contoh: Data Customer, Data Kontrak, Data Cabang"><div class="help-text">Nama ini akan tampil sebagai pilihan database di menu pencarian.</div></div>
+            <div class="form-field"><label for="sheetSelect">Sheet Excel</label><select id="sheetSelect" disabled><option value="">Pilih file lebih dulu</option></select></div>
+            <div class="form-field"><label for="keyColumns">Kolom identitas untuk update (opsional)</label><select id="keyColumns" multiple disabled></select><div class="help-text">Pilih kolom yang benar-benar mengidentifikasi record, misalnya ID Customer atau Nomor Kontrak. Bisa pilih beberapa kolom sekaligus. Kosongkan untuk mode tambah saja.</div></div>
+          </div>
+          <div class="file-row"><button class="btn btn-primary" id="previewBtn" type="button" disabled>Analisis & Preview</button><button class="btn btn-secondary" id="cancelImportBtn" type="button" disabled>Batalkan proses</button></div>
+          <div class="progress-wrap" id="progressWrap"><div class="progress-track"><div class="progress-bar" id="progressBar"></div></div><div class="progress-caption"><span id="progressText">Menyiapkan file...</span><strong id="progressPercent">0%</strong></div></div>
+          <div class="status-line" id="importStatus" role="status" aria-live="polite"><span class="status-dot"></span><span id="importStatusText">Belum ada proses import.</span></div>
+        </section>
+        <aside class="panel section-card">
+          <h3 class="section-title">Aturan pembaruan</h3>
+          <p class="section-subtitle">Sistem menggunakan aturan yang aman agar record berbeda tidak tertimpa hanya karena satu kolomnya kebetulan sama.</p>
+          <div class="preview-note"><strong>Duplikat persis:</strong> hanya jika seluruh kolom pada file dan nilainya sama. Satu kolom sama saja tidak dianggap duplikat.</div>
+          <div class="help-text" style="font-size:11px;color:#47556c">
+            <p><strong>1. Data baru</strong><br>Record yang belum ada akan ditambahkan.</p>
+            <p><strong>2. Data yang cocok</strong><br>Record diperbarui hanya berdasarkan kolom identitas yang lo pilih.</p>
+            <p><strong>3. Duplikat persis</strong><br>Baris yang sama persis di file atau sudah ada di database akan dilewati.</p>
+            <p><strong>4. Data lama</strong><br>Record yang tidak muncul di file terbaru tidak akan dihapus.</p>
+            <p><strong>5. Kunci ambigu</strong><br>Kalau satu kunci menunjuk ke beberapa record, import dihentikan sampai kunci diperbaiki.</p>
+          </div>
+        </aside>
+      </div>
+      <section class="panel preview-panel" id="previewPanel">
+        <h3 class="section-title">Hasil analisis sebelum import</h3>
+        <p class="section-subtitle" id="previewSubtitle">Periksa ringkasan berikut sebelum menerapkan perubahan.</p>
+        <div class="preview-grid" id="previewGrid"></div>
+        <div class="preview-note" id="previewNote">Tidak ada data yang akan diubah sebelum lo menekan tombol Terapkan Update.</div>
+        <div class="preview-actions"><span class="muted" id="previewKeySummary" style="font-size:10px"></span><div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn btn-secondary" id="rePreviewBtn" type="button">Hitung Ulang</button><button class="btn btn-green" id="commitBtn" type="button">Terapkan Update ke Database</button></div></div>
+      </section>
+    </section>
+
+    <section id="view-history" class="hidden">
+      <section class="panel">
+        <div class="toolbar"><div><strong style="font-size:12px">Riwayat import database</strong><p class="muted" style="font-size:10px;margin:5px 0 0">Catatan update terakhir dan opsi rollback bila belum ada import lain yang mengubah record terkait.</p></div><button class="btn btn-secondary" id="refreshHistoryBtn" type="button">↻ Refresh</button></div>
+        <div class="table-scroll"><table class="history-table"><thead><tr><th>Waktu</th><th>Database</th><th>File</th><th>Status</th><th>Ditambahkan</th><th>Diperbarui</th><th>Duplikat</th><th>Aksi</th></tr></thead><tbody id="historyBody"></tbody></table><div class="empty-state hidden" id="historyEmpty"><strong>Belum ada riwayat import</strong><p>Riwayat akan tampil setelah file pertama berhasil diproses.</p></div></div>
+      </section>
+    </section>
+    <div class="footer">KING ZIEL APP · Dibuat dengan ♥ oleh Yusuf Zulkarnaen</div>
+  </main>
+
+  <script>
+  (() => {
+    'use strict';
+    const $ = id => document.getElementById(id);
+    const fmt = new Intl.NumberFormat('id-ID');
+    const state = {
+      datasets: [], selectedDatasetId: '', headers: [], rows: [], total: 0, datasetTotal: 0,
+      page: 1, pageSize: 50, query: '', filters: {}, sort: '', direction: 'asc',
+      showFilters: true, parsed: null, importId: '', preview: null, importHeaderMap: {}, accessKey: '',
+      authRequired: false, busy: false, searchTimer: null, importDatasetId: ''
+    };
+
+    async function request(path, options = {}) {
+      const headers = new Headers(options.headers || {});
+      if (state.accessKey) headers.set('x-app-key', state.accessKey);
+      if (options.body && !headers.has('Content-Type')) headers.set('Content-Type', 'application/json');
+      let response = await fetch(path, { ...options, headers, cache: 'no-store' });
+      if (response.status === 401 && state.authRequired && !options.noPrompt) {
+        const entered = window.prompt('Masukkan kunci akses internal aplikasi (satu kunci bersama, bukan akun per orang):');
+        if (!entered) throw new Error('Kunci akses diperlukan untuk membuka database.');
+        state.accessKey = entered;
+        sessionStorage.setItem('kziel_shared_key', entered);
+        headers.set('x-app-key', entered);
+        response = await fetch(path, { ...options, headers, cache: 'no-store' });
+      }
+      let payload = {};
+      try { payload = await response.json(); } catch { /* ignore empty response */ }
+      if (!response.ok) throw new Error(payload.error || `Request gagal (${response.status}).`);
+      return payload;
+    }
+
+    function setImportStatus(message, type = 'normal') {
+      const el = $('importStatus');
+      el.className = `status-line ${type === 'normal' ? '' : type}`;
+      $('importStatusText').textContent = message;
+    }
+    function setPage(view) {
+      document.querySelectorAll('.tab').forEach(tab => tab.classList.toggle('active', tab.dataset.view === view));
+      ['search','update','history'].forEach(name => $(`view-${name}`).classList.toggle('hidden', name !== view));
+      const headings = {
+        search: ['Pencarian Data', 'Cari data dari database pusat kantor, tanpa perlu upload ulang setiap kali membuka aplikasi.'],
+        update: ['Update Database', 'Upload master Excel terbaru, periksa hasil analisis, lalu terapkan perubahan ke SQL.'],
+        history: ['Riwayat Update', 'Pantau proses import sebelumnya dan batalkan import yang masih aman untuk di-rollback.']
+      };
+      $('pageHeading').textContent = headings[view][0];
+      $('pageDescription').textContent = headings[view][1];
+      if (view === 'history') loadHistory();
+    }
+
+    async function initialize() {
+      try {
+        const config = await request('/api/config', { noPrompt: true });
+        state.authRequired = Boolean(config.authRequired);
+        state.accessKey = sessionStorage.getItem('kziel_shared_key') || '';
+        await request('/api/health');
+        $('connectionChip').textContent = '● DATABASE TERHUBUNG';
+        $('connectionChip').style.color = '#d8ffeb';
+        await loadDatasets();
+      } catch (error) {
+        $('connectionChip').textContent = '● DATABASE BELUM SIAP';
+        $('connectionChip').style.color = '#ffe2b8';
+        showFatal(error.message);
+      }
+    }
+
+    function showFatal(message) {
+      $('emptyTitle').textContent = 'Backend belum siap';
+      $('emptyDescription').textContent = message;
+      $('emptyState').classList.remove('hidden');
+      $('dataTable').classList.add('hidden');
+      $('tableSummary').textContent = 'Koneksi ke backend gagal.';
+    }
+
+    async function loadDatasets(preferredId = null) {
+      const result = await request('/api/datasets');
+      state.datasets = result.datasets || [];
+      const choose = preferredId || state.selectedDatasetId;
+      const selected = state.datasets.find(item => item.id === choose) || state.datasets[0] || null;
+      state.selectedDatasetId = selected?.id || '';
+      renderDatasetSelectors();
+      if (selected) await loadRows(true);
+      else {
+        state.headers = []; state.rows = []; state.total = 0; state.datasetTotal = 0;
+        $('globalSearch').disabled = true; $('pageSize').disabled = true; $('filterToggle').disabled = true;
+        renderSearch();
+      }
+    }
+
+    function renderDatasetSelectors() {
+      const searchSelect = $('datasetSelect');
+      const updateSelect = $('targetDataset');
+      searchSelect.replaceChildren();
+      updateSelect.replaceChildren();
+      if (!state.datasets.length) {
+        searchSelect.add(new Option('Belum ada database', ''));
+      } else {
+        state.datasets.forEach(dataset => searchSelect.add(new Option(`${dataset.name} · ${fmt.format(Number(dataset.record_count)||0)} data`, dataset.id)));
+      }
+      updateSelect.add(new Option('＋ Buat database / kategori baru', '__new__'));
+      state.datasets.forEach(dataset => updateSelect.add(new Option(dataset.name, dataset.id)));
+      searchSelect.value = state.selectedDatasetId;
+      updateSelect.value = '__new__';
+      $('newDatasetWrap').classList.remove('hidden');
+    }
+
+    async function loadRows(resetPage = false) {
+      if (!state.selectedDatasetId) return;
+      if (resetPage) state.page = 1;
+      const params = new URLSearchParams({
+        datasetId: state.selectedDatasetId, page: String(state.page), pageSize: String(state.pageSize),
+        q: state.query, sort: state.sort, direction: state.direction, filters: JSON.stringify(state.filters)
+      });
+      try {
+        const result = await request(`/api/records?${params}`);
+        if (result.pages > 0 && state.page > result.pages) { state.page = result.pages; return loadRows(); }
+        if (result.pages === 0) state.page = 1;
+        state.headers = result.dataset.headers || [];
+        state.rows = result.rows || [];
+        state.total = result.total || 0;
+        state.datasetTotal = result.datasetTotal || 0;
+        const selectedDataset = state.datasets.find(item => item.id === state.selectedDatasetId);
+        $('datasetUpdated').textContent = selectedDataset?.updated_at ? `Terakhir diperbarui ${new Date(selectedDataset.updated_at).toLocaleString('id-ID')}` : 'Database dipilih';
+        renderSearch(result.pages || 0);
+      } catch (error) {
+        showFatal(error.message);
+      }
+    }
+
+    function renderSearch(pagesOverride = null) {
+      const filteredTotal = state.total;
+      const pages = pagesOverride === null ? Math.ceil(filteredTotal / state.pageSize) : pagesOverride;
+      $('totalCount').textContent = fmt.format(state.datasetTotal || 0);
+      $('resultCount').textContent = fmt.format(filteredTotal);
+      $('columnCount').textContent = fmt.format(state.headers.length);
+      $('pageCount').textContent = `${state.page} / ${pages}`;
+      $('tableSummary').textContent = state.selectedDatasetId ? `${fmt.format(filteredTotal)} hasil ditemukan pada database terpilih.` : 'Belum ada database.';
+      $('sortSummary').textContent = state.sort ? `Urut: ${state.sort} (${state.direction === 'asc' ? 'A–Z' : 'Z–A'})` : 'Klik judul kolom untuk mengurutkan.';
+      $('globalSearch').disabled = !state.selectedDatasetId;
+      $('pageSize').disabled = !state.selectedDatasetId;
+      $('filterToggle').disabled = !state.headers.length;
+      $('exportPageBtn').disabled = !state.rows.length;
+      $('pageInfo').textContent = filteredTotal ? `Menampilkan ${fmt.format((state.page-1)*state.pageSize+1)}–${fmt.format((state.page-1)*state.pageSize+state.rows.length)} dari ${fmt.format(filteredTotal)} hasil` : 'Menampilkan 0 data';
+      $('prevPage').disabled = state.page <= 1 || !filteredTotal;
+      $('nextPage').disabled = state.page >= pages || !filteredTotal;
+      renderTable();
+      renderPagination();
+    }
+
+    function renderTable() {
+      const thead = $('tableHeader'); const tbody = $('tableBody');
+      thead.replaceChildren(); tbody.replaceChildren();
+      if (!state.headers.length) {
+        $('dataTable').classList.add('hidden'); $('emptyState').classList.remove('hidden');
+        $('emptyTitle').textContent = state.selectedDatasetId ? 'Dataset belum memiliki data' : 'Database masih kosong';
+        $('emptyDescription').textContent = state.selectedDatasetId ? 'Buka menu Update Database untuk memasukkan master Excel.' : 'Buka menu Update Database untuk memasukkan file master pertama.';
+        $('filterToggle').disabled = true;
+        return;
+      }
+      $('dataTable').classList.toggle('hidden', !state.rows.length);
+      $('emptyState').classList.toggle('hidden', Boolean(state.rows.length));
+      $('emptyTitle').textContent = 'Data tidak ditemukan';
+      $('emptyDescription').textContent = 'Coba kata kunci atau filter lain.';
+
+      const headRow = document.createElement('tr');
+      const numberHeader = document.createElement('th'); numberHeader.textContent = '#'; headRow.appendChild(numberHeader);
+      state.headers.forEach(header => {
+        const th = document.createElement('th'); th.className = 'sortable';
+        th.textContent = header + (state.sort === header ? (state.direction === 'asc' ? ' ↑' : ' ↓') : '');
+        th.addEventListener('click', () => {
+          if (state.sort === header) state.direction = state.direction === 'asc' ? 'desc' : 'asc';
+          else { state.sort = header; state.direction = 'asc'; }
+          loadRows(true);
+        });
+        headRow.appendChild(th);
+      });
+      thead.appendChild(headRow);
+
+      const filterRow = document.createElement('tr'); filterRow.className = 'filter-row';
+      filterRow.appendChild(document.createElement('th'));
+      state.headers.forEach(header => {
+        const th = document.createElement('th'); const input = document.createElement('input');
+        input.className = 'column-filter'; input.type = 'search'; input.placeholder = `Filter ${header}`; input.value = state.filters[header] || '';
+        input.addEventListener('input', () => { state.filters[header] = input.value; state.page = 1; scheduleSearch(); });
+        th.appendChild(input); filterRow.appendChild(th);
+      });
+      thead.appendChild(filterRow);
+      filterRow.classList.toggle('hidden', !state.showFilters);
+      $('filterToggle').classList.toggle('active', state.showFilters);
+      $('filterToggle').textContent = state.showFilters ? '☷ Sembunyikan Filter' : '☷ Tampilkan Filter';
+
+      const fragment = document.createDocumentFragment();
+      state.rows.forEach((record, index) => {
+        const tr = document.createElement('tr');
+        const num = document.createElement('td'); num.style.color = '#93a0b3'; num.textContent = fmt.format((state.page-1)*state.pageSize+index+1); tr.appendChild(num);
+        state.headers.forEach(header => {
+          const td = document.createElement('td'); const value = record.data?.[header] ?? '';
+          td.textContent = value === '' ? '-' : String(value); td.title = String(value); tr.appendChild(td);
+        });
+        fragment.appendChild(tr);
+      });
+      tbody.appendChild(fragment);
+    }
+
+    function scheduleSearch() {
+      clearTimeout(state.searchTimer);
+      state.searchTimer = setTimeout(() => loadRows(true), 260);
+    }
+
+    function renderPagination() {
+      const pages = Math.ceil(state.total / state.pageSize); const holder = $('pageNumbers'); holder.replaceChildren();
+      const list = [...new Set([1, pages, state.page-1, state.page, state.page+1])].filter(n => n>=1 && n<=pages).sort((a,b)=>a-b);
+      let last = 0;
+      list.forEach(n => {
+        if (last && n-last>1) { const dots=document.createElement('span'); dots.textContent='…'; dots.style.padding='0 4px'; holder.appendChild(dots); }
+        const btn=document.createElement('button'); btn.className=`page-btn${n===state.page?' active':''}`; btn.type='button'; btn.textContent=String(n); btn.addEventListener('click',()=>{state.page=n;loadRows();}); holder.appendChild(btn); last=n;
+      });
+    }
+
+    function renderTableAndPages() {
+      renderTable(); renderPagination();
+    }
+
+    function exportCurrentPage() {
+      if (!state.rows.length || typeof XLSX === 'undefined') return;
+      const output = [state.headers, ...state.rows.map(record => state.headers.map(header => record.data?.[header] ?? ''))];
+      const worksheet = XLSX.utils.aoa_to_sheet(output); const workbook = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(workbook, worksheet, 'Data');
+      XLSX.writeFile(workbook, `king-ziel-hasil-halaman-${state.page}-${new Date().toISOString().slice(0,10)}.xlsx`);
+    }
+
+    function cleanHeaders(rawHeaders) {
+      const used = new Set();
+      return rawHeaders.map((value, index) => {
+        const base = String(value ?? '').replace(/\u00a0/g,' ').trim() || `Kolom ${index+1}`;
+        let candidate = base; let suffix = 2;
+        while (used.has(candidate.toLocaleLowerCase('id-ID'))) candidate = `${base} (${suffix++})`;
+        used.add(candidate.toLocaleLowerCase('id-ID')); return candidate;
+      });
+    }
+
+    async function parseSelectedFile(file) {
+      if (!file) return;
+      const extension = file.name.split('.').pop().toLowerCase();
+      if (!['xlsx','xls','csv'].includes(extension)) throw new Error('Format file tidak didukung. Gunakan .xlsx, .xls, atau .csv.');
+      if (typeof XLSX === 'undefined') throw new Error('Library Excel belum termuat. Refresh halaman dan coba lagi.');
+      setImportStatus('Membaca file Excel...', 'normal');
+      const buffer = await file.arrayBuffer();
+      const workbook = XLSX.read(buffer, { type:'array', cellDates:false, dense:true });
+      if (!workbook.SheetNames.length) throw new Error('File tidak memiliki sheet yang bisa dibaca.');
+      state.parsed = { file, workbook, headers:[], rows:[], sheetName:workbook.SheetNames[0] };
+      $('sheetSelect').replaceChildren();
+      workbook.SheetNames.forEach(name => $('sheetSelect').add(new Option(name,name)));
+      $('sheetSelect').disabled = false;
+      buildParsedSheet(workbook.SheetNames[0]);
+      $('fileMeta').textContent = `${file.name} · ${(file.size/1024/1024).toFixed(2)} MB · ${fmt.format(state.parsed.rows.length)} baris data`;
+      $('previewBtn').disabled = false;
+      setImportStatus('File siap dianalisis. Pilih kolom identitas bila ingin memperbarui record yang sudah ada.', 'success');
+    }
+
+    function buildParsedSheet(sheetName) {
+      if (!state.parsed) return;
+      const sheet = state.parsed.workbook.Sheets[sheetName];
+      const raw = XLSX.utils.sheet_to_json(sheet, { header:1, defval:'', raw:false, blankrows:false });
+      if (!raw.length) throw new Error('Sheet yang dipilih kosong. Baris pertama harus berisi judul kolom.');
+      const headers = cleanHeaders(raw[0] || []);
+      if (!headers.length) throw new Error('Judul kolom tidak ditemukan.');
+      const rows = raw.slice(1).filter(row => Array.isArray(row) && row.some(cell => String(cell ?? '').trim() !== '')).map(row => headers.map((_, index) => row[index] == null ? '' : String(row[index]).replace(/\u00a0/g,' ').trim()));
+      if (!rows.length) throw new Error('Tidak ada baris data setelah judul kolom.');
+      state.parsed.headers = headers; state.parsed.rows = rows; state.parsed.sheetName = sheetName;
+      const keySelect = $('keyColumns'); keySelect.replaceChildren();
+      headers.forEach(header => keySelect.add(new Option(header,header)));
+      keySelect.disabled = false;
+      $('fileMeta').textContent = `${state.parsed.file.name} · Sheet: ${sheetName} · ${(state.parsed.file.size/1024/1024).toFixed(2)} MB · ${fmt.format(rows.length)} baris data · ${headers.length} kolom`;
+    }
+
+    function selectedKeys() {
+      return [...$('keyColumns').selectedOptions].map(option => option.value);
+    }
+
+    async function uploadImport() {
+      if (!state.parsed || state.busy) return;
+      const target = $('targetDataset').value;
+      const datasetId = target === '__new__' ? null : target;
+      const datasetName = datasetId ? '' : $('newDatasetName').value.trim();
+      if (!datasetId && !datasetName) { setImportStatus('Isi nama database baru terlebih dahulu.', 'error'); return; }
+      const headers = state.parsed.headers; const rows = state.parsed.rows;
+      state.busy = true; $('previewBtn').disabled = true; $('cancelImportBtn').disabled = true; $('progressWrap').style.display = 'block'; $('previewPanel').style.display = 'none';
+      try {
+        const selectedBeforeUpload = selectedKeys();
+        const started = await request('/api/imports/start', { method:'POST', body:JSON.stringify({datasetId,datasetName,headers,totalRows:rows.length,fileName:state.parsed.file.name}) });
+        state.importId = started.id; state.importDatasetId = started.dataset_id; state.importHeaderMap = started.headerMap || {};
+        state.importMatchColumns = selectedBeforeUpload.map(name => state.importHeaderMap[name] || name);
+        $('cancelImportBtn').disabled = false;
+        const chunks = [];
+        let offset = 0;
+        while (offset < rows.length) {
+          let chunk = []; let approx = 0;
+          while (offset < rows.length && chunk.length < 300) {
+            const row = rows[offset]; const size = JSON.stringify(row).length + 8;
+            if (chunk.length && approx + size > 1_100_000) break;
+            chunk.push(row); approx += size; offset++;
+          }
+          chunks.push({rowStart: offset - chunk.length + 1, rows:chunk});
+        }
+        let completedRows = 0;
+        const concurrency = 5;
+        for (let i=0; i<chunks.length; i+=concurrency) {
+          const group = chunks.slice(i,i+concurrency);
+          await Promise.all(group.map(chunk => request(`/api/imports/${state.importId}/chunks`, {method:'POST',body:JSON.stringify(chunk)}).then(()=>{completedRows += chunk.rows.length;})));
+          const percent = Math.min(100, Math.round(completedRows / rows.length * 100));
+          $('progressBar').style.width = `${percent}%`;
+          $('progressText').textContent = `Mengirim ${fmt.format(completedRows)} dari ${fmt.format(rows.length)} baris`;
+          $('progressPercent').textContent = `${percent}%`;
+        }
+        setImportStatus('Semua baris diterima backend. Menghitung duplikat dan record yang perlu diperbarui...', 'normal');
+        const result = await request(`/api/imports/${state.importId}/preview`, {method:'POST',body:JSON.stringify({matchColumns:selectedKeys().map(name => state.importHeaderMap[name] || name)})});
+        state.preview = result.preview;
+        renderPreview();
+        setImportStatus('Analisis selesai. Periksa ringkasan sebelum menerapkan update.', 'success');
+      } catch (error) {
+        setImportStatus(error.message, 'error');
+      } finally {
+        state.busy = false; $('previewBtn').disabled = !state.parsed; $('cancelImportBtn').disabled = !state.importId;
+      }
+    }
+
+    function previewMetric(label, value, kind='') {
+      const card = document.createElement('div'); card.className = `preview-stat ${kind}`;
+      const valueEl = document.createElement('div'); valueEl.className='value'; valueEl.textContent=fmt.format(Number(value)||0);
+      const labelEl = document.createElement('div'); labelEl.className='label'; labelEl.textContent=label;
+      card.append(valueEl,labelEl); return card;
+    }
+
+    function renderPreview() {
+      const p = state.preview; if (!p) return;
+      $('previewPanel').style.display='block'; $('previewGrid').replaceChildren();
+      const cards = [
+        ['Baris Excel',p.totalRows,''],['Data unik',p.uniqueRows,'good'],['Duplikat dalam file',p.duplicatesInFile,'warn'],
+        ['Sudah ada persis di DB',p.exactDuplicatesExisting,'warn'],['Record akan diperbarui',p.updateCandidates,'good'],
+        ['Record baru',p.newCandidates,'good'],['Kunci bentrok di file',p.ambiguousIncoming,'bad'],['Kunci cocok ke banyak record',p.ambiguousExisting,'bad']
+      ];
+      cards.forEach(card=>$('previewGrid').appendChild(previewMetric(...card)));
+      $('previewKeySummary').textContent = p.matchColumns.length ? `Kolom identitas: ${p.matchColumns.join(' + ')}` : 'Mode tambah saja: tidak ada kolom identitas yang dipilih.';
+      if (p.canCommit) {
+        $('commitBtn').disabled=false;
+        $('previewNote').textContent='Aman untuk diterapkan berdasarkan aturan yang dipilih. Duplikat persis akan dilewati; record yang tidak ada di file tidak dihapus.';
+      } else {
+        $('commitBtn').disabled=true;
+        $('previewNote').textContent='Import belum bisa diterapkan. Ada kunci identitas yang dipakai oleh beberapa baris atau cocok ke beberapa record database. Pilih kombinasi kolom identitas yang lebih unik, lalu klik Hitung Ulang.';
+      }
+    }
+
+    async function rePreview() {
+      if (!state.importId || state.busy) return;
+      state.busy=true; $('rePreviewBtn').disabled=true; $('commitBtn').disabled=true;
+      try {
+        const result=await request(`/api/imports/${state.importId}/preview`,{method:'POST',body:JSON.stringify({matchColumns:selectedKeys().map(name => state.importHeaderMap[name] || name)})});
+        state.preview=result.preview; renderPreview(); setImportStatus('Analisis ulang selesai.','success');
+      } catch(error) { setImportStatus(error.message,'error'); }
+      finally { state.busy=false; $('rePreviewBtn').disabled=false; }
+    }
+
+    async function commitImport() {
+      if (!state.importId || !state.preview?.canCommit || state.busy) return;
+      const summary = `Terapkan update ke database?\n\n${fmt.format(state.preview.newCandidates)} data baru\n${fmt.format(state.preview.updateCandidates)} data diperbarui\n${fmt.format(state.preview.duplicatesInFile + state.preview.exactDuplicatesExisting)} duplikat dilewati\n\nData lama yang tidak ada di Excel TIDAK akan dihapus.`;
+      if (!window.confirm(summary)) return;
+      state.busy=true; $('commitBtn').disabled=true; $('rePreviewBtn').disabled=true;
+      try {
+        const result=await request(`/api/imports/${state.importId}/commit`,{method:'POST',body:'{}'});
+        if (result.blocked) { state.preview=result.preview; renderPreview(); throw new Error('Ada kecocokan yang ambigu. Periksa kolom identitas dan hitung ulang.'); }
+        const stats=result.stats;
+        setImportStatus(`Selesai! ${fmt.format(stats.insertedRows)} data ditambahkan, ${fmt.format(stats.updatedRows)} diperbarui, ${fmt.format(stats.duplicateRows)} duplikat dilewati.`, 'success');
+        $('previewSubtitle').textContent='Import selesai dan transaksi database berhasil disimpan.';
+        $('commitBtn').textContent='Update Berhasil'; $('commitBtn').disabled=true;
+        state.importId=''; state.preview=null; $('cancelImportBtn').disabled=true;
+        await loadDatasets(state.importDatasetId || state.selectedDatasetId);
+        state.importDatasetId = '';
+        setTimeout(()=>setPage('search'),900);
+      } catch(error) { setImportStatus(error.message,'error'); $('commitBtn').disabled=!state.preview?.canCommit; }
+      finally { state.busy=false; $('rePreviewBtn').disabled=false; }
+    }
+
+    async function cancelImport() {
+      if (!state.importId || state.busy) return;
+      if (!window.confirm('Batalkan sesi import ini? Data di database belum berubah selama belum menekan Terapkan Update.')) return;
+      state.busy=true; $('cancelImportBtn').disabled=true;
+      try {
+        await request(`/api/imports/${state.importId}`,{method:'DELETE'});
+        state.importId=''; state.preview=null; $('previewPanel').style.display='none';
+        setImportStatus('Sesi import dibatalkan. Database tidak berubah.','success');
+      } catch(error) { setImportStatus(error.message,'error'); $('cancelImportBtn').disabled=false; }
+      finally { state.busy=false; }
+    }
+
+    async function loadHistory() {
+      try {
+        const result=await request('/api/history'); const body=$('historyBody'); body.replaceChildren();
+        $('historyEmpty').classList.toggle('hidden',Boolean(result.history?.length));
+        (result.history||[]).forEach(item=>{
+          const tr=document.createElement('tr');
+          const date=document.createElement('td'); date.textContent=new Date(item.created_at).toLocaleString('id-ID'); tr.appendChild(date);
+          const name=document.createElement('td'); name.textContent=item.dataset_name; tr.appendChild(name);
+          const file=document.createElement('td'); file.textContent=item.file_name; file.title=item.file_name; tr.appendChild(file);
+          const status=document.createElement('td'); const badge=document.createElement('span'); badge.className=`status-badge ${item.status}`; badge.textContent=({completed:'Selesai',rolled_back:'Rollback',uploading:'Upload',previewed:'Preview'})[item.status]||item.status; status.appendChild(badge); tr.appendChild(status);
+          const stats=item.stats||{};
+          [stats.insertedRows||0,stats.updatedRows||0,stats.duplicateRows||0].forEach(value=>{const td=document.createElement('td');td.textContent=fmt.format(Number(value));tr.appendChild(td);});
+          const action=document.createElement('td');
+          if(item.status==='completed'){
+            const button=document.createElement('button');button.className='btn btn-danger';button.type='button';button.textContent='Rollback';
+            button.addEventListener('click',()=>rollback(item.id,item.file_name));action.appendChild(button);
+          } else if(item.status==='uploading' || item.status==='previewed') {
+            const button=document.createElement('button');button.className='btn btn-outline';button.type='button';button.textContent='Hapus draft';
+            button.addEventListener('click',()=>deleteDraft(item.id));action.appendChild(button);
+          } else action.textContent='—';
+          tr.appendChild(action); body.appendChild(tr);
+        });
+      } catch(error) {
+        $('historyEmpty').classList.remove('hidden'); $('historyEmpty').querySelector('p').textContent=error.message;
+      }
+    }
+
+
+    async function deleteDraft(id) {
+      if(!window.confirm('Hapus sesi import yang belum selesai? Database utama belum berubah.')) return;
+      try { await request(`/api/imports/${id}`,{method:'DELETE'}); if(state.importId===id) resetImportForm(); await loadHistory(); await loadDatasets(state.selectedDatasetId); }
+      catch(error) { window.alert(error.message); }
+    }
+
+    async function rollback(id,fileName) {
+      if(!window.confirm(`Batalkan perubahan dari import "${fileName}"?\n\nRollback hanya bisa dilakukan kalau record yang terdampak belum diubah oleh import lain setelahnya.`))return;
+      try { await request(`/api/imports/${id}/rollback`,{method:'POST',body:'{}'}); await loadHistory(); await loadDatasets(state.selectedDatasetId); window.alert('Rollback berhasil. Data sebelum import sudah dipulihkan.'); }
+      catch(error){window.alert(error.message);}
+    }
+
+    function resetImportForm() {
+      state.parsed=null; state.preview=null; state.importId=''; state.importDatasetId=''; state.importHeaderMap={}; state.importMatchColumns=[];
+      $('fileUpload').value=''; $('fileMeta').textContent='Belum ada file yang dipilih.';
+      $('sheetSelect').replaceChildren(new Option('Pilih file lebih dulu','')); $('sheetSelect').disabled=true;
+      $('keyColumns').replaceChildren(); $('keyColumns').disabled=true;
+      $('previewBtn').disabled=true; $('cancelImportBtn').disabled=true;
+      $('previewPanel').style.display='none'; $('progressWrap').style.display='none';
+      $('progressBar').style.width='0%'; $('progressText').textContent='Menyiapkan file...'; $('progressPercent').textContent='0%';
+    }
+
+    document.querySelectorAll('.tab').forEach(tab=>tab.addEventListener('click',()=>setPage(tab.dataset.view)));
+    $('datasetSelect').addEventListener('change',async event=>{state.selectedDatasetId=event.target.value;state.query='';state.filters={};state.sort='';$('globalSearch').value='';await loadRows(true);});
+    $('globalSearch').addEventListener('input',event=>{state.query=event.target.value;state.page=1;scheduleSearch();});
+    $('pageSize').addEventListener('change',event=>{state.pageSize=Number(event.target.value)||50;loadRows(true);});
+    $('filterToggle').addEventListener('click',()=>{state.showFilters=!state.showFilters;const row=$('tableHeader').querySelector('.filter-row');if(row)row.classList.toggle('hidden',!state.showFilters);$('filterToggle').textContent=state.showFilters?'☷ Sembunyikan Filter':'☷ Tampilkan Filter';});
+    $('prevPage').addEventListener('click',()=>{if(state.page>1){state.page--;loadRows();}});
+    $('nextPage').addEventListener('click',()=>{state.page++;loadRows();});
+    $('exportPageBtn').addEventListener('click',exportCurrentPage);
+    $('targetDataset').addEventListener('change',event=>$('newDatasetWrap').classList.toggle('hidden',event.target.value!=='__new__'));
+    $('sheetSelect').addEventListener('change',event=>{try{buildParsedSheet(event.target.value);setImportStatus(`Sheet ${event.target.value} siap diproses.`,'success');}catch(error){setImportStatus(error.message,'error');}});
+    $('previewBtn').addEventListener('click',uploadImport);
+    $('rePreviewBtn').addEventListener('click',rePreview);
+    $('commitBtn').addEventListener('click',commitImport);
+    $('cancelImportBtn').addEventListener('click',cancelImport);
+    $('refreshHistoryBtn').addEventListener('click',loadHistory);
+    $('fileUpload').addEventListener('change',async event=>{try{resetImportForm();await parseSelectedFile(event.target.files[0]);}catch(error){setImportStatus(error.message,'error');}});
+    const dropzone=$('dropzone');
+    dropzone.addEventListener('click',()=>{if(!state.busy)$('fileUpload').click();});
+    dropzone.addEventListener('keydown',event=>{if(event.key==='Enter'||event.key===' '){event.preventDefault();$('fileUpload').click();}});
+    ['dragenter','dragover'].forEach(type=>dropzone.addEventListener(type,event=>{event.preventDefault();dropzone.classList.add('dragover');}));
+    ['dragleave','drop'].forEach(type=>dropzone.addEventListener(type,event=>{event.preventDefault();dropzone.classList.remove('dragover');}));
+    dropzone.addEventListener('drop',async event=>{const file=event.dataTransfer?.files?.[0];if(!file)return;resetImportForm();try{await parseSelectedFile(file);}catch(error){setImportStatus(error.message,'error');}});
+    initialize();
+  })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+{
+  "name": "king-ziel-data-hub",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Internal data finder with PostgreSQL backend and Excel import workflow for Netlify.",
+  "scripts": {
+    "dev": "netlify dev",
+    "check": "node --check netlify/functions/api.mjs && node --check netlify/functions/lib/import-utils.mjs",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "@netlify/database": "*",
+    "pg": "^8.16.3"
+  }
+}
