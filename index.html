@@ -37,7 +37,6 @@
     .preview-panel{margin-top:15px;padding:18px;display:none}.preview-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;margin:14px 0}.preview-stat{padding:12px;border:1px solid var(--border);border-radius:11px;background:#fbfcfe}.preview-stat .value{font-size:21px;font-weight:850;margin-top:6px}.preview-stat .label{font-size:9px;color:var(--muted);font-weight:800;text-transform:uppercase;letter-spacing:.3px}.preview-stat.good .value{color:var(--green)}.preview-stat.warn .value{color:var(--amber)}.preview-stat.bad .value{color:var(--red)}.preview-actions{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}.preview-note{padding:10px 12px;border-radius:9px;background:var(--blue-soft);color:#355b9c;font-size:10px;line-height:1.6;margin-bottom:14px}
     .history-table td{font-size:10px}.status-badge{display:inline-flex;align-items:center;padding:5px 8px;border-radius:30px;font-size:9px;font-weight:800;background:#edf2f8;color:#55637a}.status-badge.completed{background:var(--green-soft);color:var(--green)}.status-badge.rolled_back{background:var(--amber-soft);color:var(--amber)}.status-badge.uploading,.status-badge.previewed{background:var(--blue-soft);color:var(--blue)}
     
-    /* Indikator mode instan */
     .instant-badge{display:inline-flex;align-items:center;gap:5px;padding:6px 10px;border-radius:20px;font-size:10px;font-weight:800;background:linear-gradient(135deg,#e9f8f0,#d1f0dd);color:#0d7a4f;border:1px solid #b8e5cc;transition:all .3s ease}
     .instant-badge.loading{background:#fff7e8;color:#a56a12;border-color:#f2e1ba}
     .instant-badge.loading .dot-loader{display:inline-block;width:8px;height:8px;border:2px solid #a56a12;border-top-color:transparent;border-radius:50%;animation:spin .8s linear infinite}
@@ -239,9 +238,12 @@
       if (state.accessKey) headers.set('x-app-key', state.accessKey);
       if (options.body && !headers.has('Content-Type')) headers.set('Content-Type', 'application/json');
       let response = await fetch(path, { ...options, headers, cache: 'no-store' });
+      
       if (response.status === 401 && state.authRequired && !options.noPrompt) {
-        const entered = window.prompt('Masukkan kunci akses internal aplikasi (satu kunci bersama, bukan akun per orang):');
-        if (!entered) throw new Error('Kunci akses diperlukan untuk membuka database.');
+        // === REVISI TEKS PROMPT DI SINI ===
+        const entered = window.prompt('Masukkan kunci akses untuk mengubah atau mengupload data:');
+        if (!entered) throw new Error('Akses ditolak. Kunci diperlukan untuk mengubah data.');
+        
         state.accessKey = entered;
         sessionStorage.setItem('kziel_shared_key', entered);
         headers.set('x-app-key', entered);
@@ -331,8 +333,8 @@
       
       renderDatasetSelectors();
       if (selected) {
-        await loadRows(true); // Render first page cepat (server-side)
-        checkAndLoadCache(selected); // Cek cache background
+        await loadRows(true); 
+        checkAndLoadCache(selected); 
       } else {
         state.headers = []; state.rows = []; state.total = 0; state.datasetTotal = 0;
         $('globalSearch').disabled = true; $('pageSize').disabled = true; $('filterToggle').disabled = true;
@@ -340,7 +342,6 @@
       }
     }
 
-    // === FUNGSI BARU: CEK INDEXEDDB DULU SEBELUM DOWNLOAD ===
     async function checkAndLoadCache(dataset) {
       if (!dataset) return;
       const datasetId = dataset.id;
@@ -352,17 +353,14 @@
         setInstantBadge('hidden');
       }
 
-      // 1. Coba baca dari IndexedDB
       const cached = await getCache(datasetId);
       if (cached && cached.updatedAt === updatedAt) {
-        // Cache valid dan masih fresh! Langsung pakai.
         state.cachedRecords = cached.records;
         setInstantBadge('ready');
         applyClientSearch();
-        return; // Selesai, ga perlu download!
+        return; 
       }
 
-      // 2. Kalau ga ada / expired, download dari API
       state.cachedRecords = null;
       state.cacheLoading = true;
       setInstantBadge('loading');
@@ -386,7 +384,6 @@
           state.cacheLoading = false;
           setInstantBadge('ready');
           
-          // Simpan ke IndexedDB biar next refresh instan
           await saveCache(datasetId, updatedAt, all);
           
           applyClientSearch();
@@ -791,7 +788,6 @@
         $('previewSubtitle').textContent='Import selesai dan transaksi database berhasil disimpan.';
         $('commitBtn').textContent='Update Berhasil'; $('commitBtn').disabled=true;
         
-        // HAPUS CACHE LAMA KARENA ADA DATA BARU
         const targetDatasetId = state.importDatasetId || state.selectedDatasetId;
         await clearCache(targetDatasetId);
         
@@ -873,7 +869,6 @@
       
       const selected = state.datasets.find(item => item.id === state.selectedDatasetId);
       if (selected) {
-         // Reset state cache
          state.cachedRecords = null;
          state.cacheDatasetId = '';
          await loadRows(true);
