@@ -531,7 +531,12 @@ async function handle(request) {
   if (path === '/api/config' && request.method === 'GET') {
     return json({ authRequired: Boolean(process.env.APP_ACCESS_KEY) });
   }
-  checkAccess(request);
+  
+  // === REVISI: Hanya minta akses jika bukan GET (POST/DELETE butuh sandi) ===
+  if (request.method !== 'GET') {
+    checkAccess(request);
+  }
+
   const poolInstance = databasePool();
 
   if (path === '/api/health' && request.method === 'GET') {
